@@ -17,4 +17,4 @@ kuchiki = "0.6"
 reqwest = "0.8"
 regex = "0.2"
 lazy_static = "1.0"
-hjson2json = { path = "hjson2json" }
+hjson2json = { version = "*", path = "hjson2json" }
