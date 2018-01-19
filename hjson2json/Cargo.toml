@@ -1,0 +1,10 @@
+[package]
+name = "hjson2json"
+version = "0.1.0"
+authors = ["pbzweihander <sd852456@naver.com>"]
+
+[dependencies]
+serde = "0.8"
+serde-hjson = "0.8"
+serde_json = "0.8"
+error-chain = "0.11"
