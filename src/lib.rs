@@ -71,6 +71,7 @@ impl Value {
     }
 }
 
+#[derive(Clone)]
 pub struct AirStatus {
     pub station_address: String,
     pub pm10: Pollutant,
@@ -90,6 +91,22 @@ impl IntoIterator for AirStatus {
     }
 }
 
+impl AirStatus {
+    pub fn into_map(self) -> HashMap<String, Pollutant> {
+        vec![
+            ("pm10", self.pm10),
+            ("pm25", self.pm25),
+            ("o3", self.o3),
+            ("no2", self.no2),
+            ("co", self.co),
+            ("so2", self.so2),
+        ].into_iter()
+            .map(|(key, pollutant)| (key.to_owned(), pollutant))
+            .collect()
+    }
+}
+
+#[derive(Clone)]
 pub struct Pollutant {
     pub name: String,
     pub unit: String,
