@@ -31,6 +31,7 @@ pub use errors::{Error, ErrorKind, Result};
 use kuchiki::traits::TendrilSink;
 use std::collections::HashMap;
 use std::fmt;
+use regex::{Regex, RegexBuilder};
 
 #[derive(Deserialize)]
 struct Object {
@@ -167,14 +168,14 @@ pub fn search(longitude: f32, latitude: f32) -> Result<AirStatus> {
         .text_contents();
 
     lazy_static! {
-        static ref REGEX_GRADE: regex::Regex =
-            regex::RegexBuilder::new("^(?:\\s+)function view([^(]+)[\\W\\n]+var grade = +\"(\\d)\";$")
+        static ref REGEX_GRADE: Regex =
+            RegexBuilder::new("^(?:\\s+)function view([^(]+)[\\W\\n]+var grade = +\"(\\d)\";$")
                 .dot_matches_new_line(true)
                 .multi_line(true)
                 .build()
                 .unwrap();
-        static ref REGEX_HJSON: regex::Regex =
-            regex::RegexBuilder::new(r"^var JSONObject([^_]+)_3 = (.+?);")
+        static ref REGEX_HJSON: Regex =
+            RegexBuilder::new(r"^var JSONObject([^_]+)_3 = (.+?);")
                 .dot_matches_new_line(true)
                 .multi_line(true)
                 .build()
@@ -255,8 +256,8 @@ pub fn search(longitude: f32, latitude: f32) -> Result<AirStatus> {
 
 fn trim(s: &str) -> String {
     lazy_static! {
-        static ref REGEX_WHITESPACE: regex::Regex =
-            regex::Regex::new(r"[\s\t\r\n]")
+        static ref REGEX_WHITESPACE: Regex =
+            Regex::new(r"[\s\t\r\n]")
                 .unwrap();
     }
     REGEX_WHITESPACE.replace_all(s, "").into_owned()
@@ -264,8 +265,8 @@ fn trim(s: &str) -> String {
 
 fn padding(s: &str) -> String {
     lazy_static!{
-        static ref REGEX_BRACKET: regex::Regex =
-            regex::Regex::new(r"([\{\[,])|([\}\]])")
+        static ref REGEX_BRACKET: Regex =
+            Regex::new(r"([\{\[,])|([\}\]])")
                 .unwrap();
     }
     REGEX_BRACKET.replace_all(s, "$1\n$2").into_owned()
@@ -284,8 +285,8 @@ fn to_object(s: &str) -> Result<Object> {
 
 fn to_unit(s: &str) -> Result<String> {
     lazy_static! {
-        static ref REGEX_UNIT: regex::Regex =
-            regex::Regex::new(r"[^.\d]+$").unwrap();
+        static ref REGEX_UNIT: Regex =
+            Regex::new(r"[^.\d]+$").unwrap();
     }
     REGEX_UNIT
         .find(s)
