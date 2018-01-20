@@ -131,11 +131,11 @@ impl fmt::Display for Pollutant {
                 .collect::<Vec<String>>()
                 .join(" -> "),
             match self.grade {
-                Grade::None => "",
-                Grade::Good => "(Good)",
-                Grade::Normal => "(Normal)",
-                Grade::Bad => "(Bad)",
-                Grade::Critical => "(Critical)",
+                Grade::None => "None",
+                Grade::Good => "Good",
+                Grade::Normal => "Normal",
+                Grade::Bad => "Bad",
+                Grade::Critical => "Critical",
             }
         )
     }
@@ -214,7 +214,7 @@ pub fn search(longitude: f32, latitude: f32) -> Result<AirStatus> {
                     let level_by_time = o.rows.into_iter().flat_map(|r| {
                         r.c.into_iter().nth(1).map(|item| {
                             let level = item.v.to_float();
-                            let unit = item.f.and_then(|unit| to_unit(&unit).ok());
+                            let unit = item.f.map(|unit| to_unit(&unit));
                             (level, unit)
                         })
                     });
@@ -232,7 +232,7 @@ pub fn search(longitude: f32, latitude: f32) -> Result<AirStatus> {
                 .by_ref()
                 .filter_map(|(_, unit)| unit)
                 .next()
-                .unwrap_or_else(|| "".to_owned());
+                .unwrap_or_else(|| String::new());
             let pollutant = Pollutant {
                 name,
                 unit,
@@ -283,13 +283,13 @@ fn to_object(s: &str) -> Result<Object> {
         .and_then(|json| serde_json::from_str(&json).map_err(|e| e.into()))
 }
 
-fn to_unit(s: &str) -> Result<String> {
+fn to_unit(s: &str) -> String {
     lazy_static! {
         static ref REGEX_UNIT: Regex =
             Regex::new(r"[^.\d]+$").unwrap();
     }
     REGEX_UNIT
         .find(s)
-        .map(|unit| unit.as_str().to_owned())
-        .ok_or_else(|| ErrorKind::ParsePage.into())
+        .map(|unit| unit.as_str().replace("null", ""))
+        .unwrap_or_else(|| String::new())
 }
