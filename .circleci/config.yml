@@ -12,7 +12,7 @@ workflows:
   flow:
     jobs:
       - test
-      - cargo_publish:
+      - publish:
           requires:
             - test
           filters:
@@ -37,7 +37,7 @@ jobs:
           paths:
             - ~/.cargo
             - target
-  cargo_publish:
+  publish:
     docker:
       - image: rust:1
     steps:
