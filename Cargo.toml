@@ -1,6 +1,6 @@
 [package]
 name = "airkorea"
-version = "0.1.2"
+version = "0.2.0"
 authors = ["pbzweihander <sd852456@naver.com>"]
 description = "Limitless Airkorea API wrapper"
 license = "MIT/Apache-2.0"
