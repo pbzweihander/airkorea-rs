@@ -1,0 +1,52 @@
+version: 2
+
+cargo_login: &cargo_login
+  run:
+    name: authentication
+    command:  |
+      cargo --version
+      cargo login "$CARGO_TOKEN"
+
+workflows:
+  version: 2
+  flow:
+    jobs:
+      - test
+      - cargo_publish:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
+jobs:
+  test:
+    docker:
+      - image: rust:1
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - cargo.registry-{{ checksum "Cargo.toml" }}
+            - cargo.registry-
+      - run:
+          name: test
+          command: cargo test
+      - save_cache:
+          key: cargo.registry-{{ checksum "Cargo.toml" }}
+          paths:
+            - ~/.cargo
+            - target
+  cargo_publish:
+    docker:
+      - image: rust:1
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - cargo.registry-{{ checksum "Cargo.toml" }}
+          - cargo.registry-
+      - <<: *cargo_login
+      - run: curl -sSL https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 --output /usr/bin/jq
+      - run: chmod +x /usr/bin/jq
+      - run: make cargo-publish
