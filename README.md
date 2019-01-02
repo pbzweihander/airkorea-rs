@@ -1,5 +1,6 @@
 # airkorea-rs
 
+[![circleci](https://circleci.com/gh/pbzweihander/airkorea-rs.svg?style=shield)](https://circleci.com/gh/pbzweihander/airkorea-rs)
 [![crate.io](https://img.shields.io/crates/v/airkorea.svg)](https://crates.io/crates/airkorea)
 [![docs.rs](https://docs.rs/airkorea/badge.svg)](https://docs.rs/airkorea)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE-MIT)
