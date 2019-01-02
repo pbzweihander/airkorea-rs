@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0
+
+- Now with 2018 edition!
+- Updated dependencies
+- Asynchronous call with futures
+
 ## 0.2.0
 
 - Now work properly with new airkorea mobile page
