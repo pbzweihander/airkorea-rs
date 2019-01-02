@@ -4,27 +4,27 @@
 //!
 //! # Example
 //!
-//! ```ignore
-//! let status = airkorea::search(lng, lat)?;
+//! ```
+//! # use tokio::runtime::Runtime;
+//! # use futures::prelude::*;
+//! # let mut rt = Runtime::new().unwrap();
+//! # let (lng, lat) = (127.28698636603603, 36.61095403123917);
+//! let status = rt.block_on(airkorea::search(lng, lat)).unwrap();
 //! println!("Station address: {}", status.station_address);
 //! for pollutant in status {
 //!     println!("{}", pollutant);
 //! }
 //! ```
 
-extern crate failure;
-extern crate scraper;
-#[macro_use]
-extern crate lazy_static;
-extern crate regex;
-extern crate reqwest;
-
-use regex::Regex;
-use scraper::{Html, Selector};
-use std::fmt;
-
-pub use failure::Error;
-pub type Result<T> = std::result::Result<T, failure::Error>;
+use {
+    failure::Error,
+    futures::prelude::*,
+    lazy_static::lazy_static,
+    regex::Regex,
+    reqwest::r#async::Client,
+    scraper::{Html, Selector},
+    std::fmt,
+};
 
 #[derive(Clone, Debug)]
 pub struct AirStatus {
@@ -59,7 +59,7 @@ impl fmt::Display for Pollutant {
                 "{}{}",
                 self.level
                     .map(|f| f.to_string())
-                    .unwrap_or("--".to_string()),
+                    .unwrap_or_else(|| "--".to_string()),
                 self.unit
             ),
             match self.grade {
@@ -91,14 +91,14 @@ impl Grade {
         } else if s.starts_with("나") {
             Grade::Bad
         } else if s.starts_with("매") {
-            Grade::Bad
+            Grade::Critical
         } else {
             Grade::None
         }
     }
 }
 
-fn extract_text_from_element<'a>(element: scraper::element_ref::ElementRef<'a>) -> String {
+fn extract_text_from_element(element: scraper::element_ref::ElementRef) -> String {
     element
         .text()
         .map(|s| s.trim())
@@ -117,12 +117,22 @@ fn extract_text_with_selector<'a>(
         .join("")
 }
 
-fn request(url: &str) -> Result<Html> {
-    let mut resp = reqwest::get(url)?;
-    Ok(Html::parse_document(&resp.text()?))
+fn request(url: &str) -> impl Future<Item = Html, Error = Error> {
+    let client = Client::new();
+    client
+        .get(url)
+        .send()
+        .map_err(Into::into)
+        .and_then(|resp| {
+            resp.into_body().concat2().map_err(Into::into).map(|chunk| {
+                let v = chunk.to_vec();
+                String::from_utf8_lossy(&v).to_string()
+            })
+        })
+        .map(|body| Html::parse_document(&body))
 }
 
-fn parse(document: Html) -> Result<AirStatus> {
+fn parse(document: &Html) -> Result<AirStatus, Error> {
     lazy_static! {
         static ref SELECTOR_STATION: Selector = Selector::parse(".tit").unwrap();
         static ref SELECTOR_ITEM: Selector = Selector::parse(".item").unwrap();
@@ -145,18 +155,21 @@ fn parse(document: Html) -> Result<AirStatus> {
             let level = extract_text_with_selector(&item, &SELECTOR_LEVEL);
             let grade = extract_text_with_selector(&item, &SELECTOR_GRADE);
             (name, level, grade)
-        }).filter_map(|(name, level, grade)| {
+        })
+        .filter_map(|(name, level, grade)| {
             REGEX_UNWRAP.captures(&name).map(|c| {
                 let name = c.get(1).unwrap().as_str().to_string();
                 (name, level, grade)
             })
-        }).filter_map(|(name, level, grade)| {
+        })
+        .filter_map(|(name, level, grade)| {
             REGEX_LEVEL.captures(&level).map(|c| {
                 let level = c.get(1).unwrap().as_str().to_string();
                 let unit = c.get(2).unwrap().as_str().to_string();
                 (name, level, unit, grade)
             })
-        }).map(|(name, level, unit, grade)| {
+        })
+        .map(|(name, level, unit, grade)| {
             let level = level.parse::<f32>().ok();
             let grade = Grade::from_str(&grade);
 
@@ -166,7 +179,8 @@ fn parse(document: Html) -> Result<AirStatus> {
                 unit: unit,
                 grade: grade,
             }
-        }).collect::<Vec<_>>();
+        })
+        .collect::<Vec<_>>();
 
     Ok(AirStatus {
         station_address,
@@ -174,12 +188,11 @@ fn parse(document: Html) -> Result<AirStatus> {
     })
 }
 
-pub fn search(longitude: f32, latitude: f32) -> Result<AirStatus> {
+pub fn search(longitude: f32, latitude: f32) -> impl Future<Item = AirStatus, Error = Error> {
+    use futures::future::result;
     let addr = format!(
         "http://m.airkorea.or.kr/main?lng={}&lat={}&deviceID=1234",
         longitude, latitude
     );
-    let html = request(&addr)?;
-    let status = parse(html)?;
-    Ok(status)
+    request(&addr).and_then(|html| result(parse(&html)))
 }
