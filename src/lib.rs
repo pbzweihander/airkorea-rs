@@ -62,13 +62,7 @@ impl fmt::Display for Pollutant {
                     .unwrap_or_else(|| "--".to_string()),
                 self.unit
             ),
-            match self.grade {
-                Grade::None => "None",
-                Grade::Good => "Good",
-                Grade::Normal => "Normal",
-                Grade::Bad => "Bad",
-                Grade::Critical => "Critical",
-            }
+            self.grade,
         )
     }
 }
@@ -95,6 +89,22 @@ impl Grade {
         } else {
             Grade::None
         }
+    }
+}
+
+impl fmt::Display for Grade {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "{}",
+            match self {
+                Grade::None => "None",
+                Grade::Good => "Good",
+                Grade::Normal => "Normal",
+                Grade::Bad => "Bad",
+                Grade::Critical => "Critical",
+            }
+        )
     }
 }
 

@@ -9,9 +9,10 @@
 Limitless [Airkorea](http://www.airkorea.or.kr) API wrapper written in Rust.
 
 ```rust
-extern crate airkorea;
+use {airkorea, futures::prelude::*, tokio::runtime::Runtime};
 
-let status = airkorea::search(lng, lat)?;
+let mut rt = Runtime::new();
+let status = rt.block_on(airkorea::search(lng, lat))?;
 println!("Station address: {}", status.station_address);
 for pollutant in status {
     println!("{}", pollutant);

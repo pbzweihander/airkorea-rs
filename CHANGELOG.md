@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+
+- implement `fmt::Display` trait for `Grade`
+
 ## 0.3.0
 
 - Now with 2018 edition!
