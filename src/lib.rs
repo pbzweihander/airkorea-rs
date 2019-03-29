@@ -11,6 +11,7 @@
 //! # let (lng, lat) = (127.28698636603603, 36.61095403123917);
 //! let status = rt.block_on(airkorea::search(lng, lat)).unwrap();
 //! println!("Station address: {}", status.station_address);
+//! println!("Time: {}", status.time);
 //! for pollutant in status {
 //!     println!("{}", pollutant);
 //! }
@@ -29,6 +30,7 @@ use {
 #[derive(Clone, Debug)]
 pub struct AirStatus {
     pub station_address: String,
+    pub time: String,
     pub pollutants: Vec<Pollutant>,
 }
 
@@ -45,7 +47,7 @@ impl IntoIterator for AirStatus {
 pub struct Pollutant {
     pub name: String,
     pub unit: String,
-    pub level: Option<f32>,
+    pub data: Vec<Option<f32>>,
     pub grade: Grade,
 }
 
@@ -53,15 +55,14 @@ impl fmt::Display for Pollutant {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "{:<6} {:<10} {}",
+            "{:<6}({}): {}  {}",
             self.name,
-            format!(
-                "{}{}",
-                self.level
-                    .map(|f| f.to_string())
-                    .unwrap_or_else(|| "--".to_string()),
-                self.unit
-            ),
+            self.unit,
+            self.data
+                .iter()
+                .map(|p| p.map(|f| f.to_string()).unwrap_or_else(|| "--".to_string()))
+                .collect::<Vec<_>>()
+                .join(" → "),
             self.grade,
         )
     }
@@ -116,17 +117,6 @@ fn extract_text_from_element(element: scraper::element_ref::ElementRef) -> Strin
         .join("")
 }
 
-fn extract_text_with_selector<'a>(
-    element: &scraper::element_ref::ElementRef<'a>,
-    selector: &Selector,
-) -> String {
-    element
-        .select(selector)
-        .map(extract_text_from_element)
-        .collect::<Vec<_>>()
-        .join("")
-}
-
 fn request(url: &str) -> impl Future<Item = Html, Error = Error> {
     let client = Client::new();
     client
@@ -142,15 +132,17 @@ fn request(url: &str) -> impl Future<Item = Html, Error = Error> {
         .map(|body| Html::parse_document(&body))
 }
 
-fn parse(document: &Html) -> Result<AirStatus, Error> {
+fn parse(document: &Html) -> AirStatus {
     lazy_static! {
-        static ref SELECTOR_STATION: Selector = Selector::parse(".tit").unwrap();
-        static ref SELECTOR_ITEM: Selector = Selector::parse(".item").unwrap();
-        static ref SELECTOR_NAME: Selector = Selector::parse(".ti>.t1").unwrap();
-        static ref SELECTOR_LEVEL: Selector = Selector::parse(".ti>.t2").unwrap();
-        static ref SELECTOR_GRADE: Selector = Selector::parse(".tx>.t").unwrap();
-        static ref REGEX_UNWRAP: Regex = Regex::new("\\((.+)\\)").unwrap();
-        static ref REGEX_LEVEL: Regex = Regex::new("([\\d.-]+)(.+)").unwrap();
+        static ref SELECTOR_STATION: Selector = Selector::parse("h1>.tit").unwrap();
+        static ref SELECTOR_TIME: Selector = Selector::parse("h1>.tim").unwrap();
+        static ref SELECTOR_LIST: Selector = Selector::parse("div[class^=mList]>ul>li").unwrap();
+        static ref SELECTOR_NAME: Selector = Selector::parse(".tit").unwrap();
+        static ref REGEX_NAME: Regex = Regex::new(r"\((.*)\)").unwrap();
+        static ref SELECTOR_GRADE: Selector = Selector::parse(".con>.co>.tx>.t1").unwrap();
+        static ref SELECTOR_UNIT: Selector = Selector::parse(".con>.co>.tx>.t1>sub").unwrap();
+        static ref SELECTOR_SCRIPT: Selector = Selector::parse("body>script:last-child").unwrap();
+        static ref REGEX_ROW: Regex = Regex::new(r"addRows\(\[(.*)\]\);").unwrap();
     }
 
     let station_address = document
@@ -158,51 +150,96 @@ fn parse(document: &Html) -> Result<AirStatus, Error> {
         .map(|e| e.text().next().unwrap_or_default().trim().to_string())
         .next()
         .unwrap_or_default();
+    let time = document
+        .select(&SELECTOR_TIME)
+        .map(extract_text_from_element)
+        .next()
+        .unwrap_or_default();
+
+    let pollutant_keys = document.select(&SELECTOR_LIST).map(|graph| {
+        let name = graph
+            .select(&SELECTOR_NAME)
+            .next()
+            .map(extract_text_from_element)
+            .and_then(|n| {
+                REGEX_NAME
+                    .captures(&n)
+                    .and_then(|c| c.get(1))
+                    .map(|c| c.as_str().to_string())
+            });
+        let grade = graph
+            .select(&SELECTOR_GRADE)
+            .next()
+            .map(extract_text_from_element)
+            .map(|g| Grade::from_str(&g))
+            .unwrap_or_else(|| Grade::None);
+        let unit = graph
+            .select(&SELECTOR_UNIT)
+            .next()
+            .map(extract_text_from_element)
+            .unwrap_or_default();
+
+        (name, unit, grade)
+    });
+
     let pollutants = document
-        .select(&SELECTOR_ITEM)
-        .map(|item| {
-            let name = extract_text_with_selector(&item, &SELECTOR_NAME);
-            let level = extract_text_with_selector(&item, &SELECTOR_LEVEL);
-            let grade = extract_text_with_selector(&item, &SELECTOR_GRADE);
-            (name, level, grade)
+        .select(&SELECTOR_SCRIPT)
+        .next()
+        .map(extract_text_from_element)
+        .map(|script| {
+            REGEX_ROW
+                .find_iter(&script)
+                .map(|row| {
+                    let row = row.as_str();
+                    row.split("],[")
+                        .map(|data| data.split(',').filter_map(|s| s.parse::<f32>().ok()).next())
+                        .collect::<Vec<_>>()
+                })
+                .zip(pollutant_keys)
+                .filter_map(|(data, (name, unit, grade))| {
+                    name.map(|name| Pollutant {
+                        name,
+                        unit,
+                        data,
+                        grade,
+                    })
+                })
+                .collect()
         })
-        .filter_map(|(name, level, grade)| {
-            REGEX_UNWRAP.captures(&name).map(|c| {
-                let name = c.get(1).unwrap().as_str().to_string();
-                (name, level, grade)
-            })
-        })
-        .filter_map(|(name, level, grade)| {
-            REGEX_LEVEL.captures(&level).map(|c| {
-                let level = c.get(1).unwrap().as_str().to_string();
-                let unit = c.get(2).unwrap().as_str().to_string();
-                (name, level, unit, grade)
-            })
-        })
-        .map(|(name, level, unit, grade)| {
-            let level = level.parse::<f32>().ok();
-            let grade = Grade::from_str(&grade);
+        .unwrap_or_default();
 
-            Pollutant {
-                name: name,
-                level: level,
-                unit: unit,
-                grade: grade,
-            }
-        })
-        .collect::<Vec<_>>();
-
-    Ok(AirStatus {
+    AirStatus {
         station_address,
+        time,
         pollutants,
-    })
+    }
 }
 
 pub fn search(longitude: f32, latitude: f32) -> impl Future<Item = AirStatus, Error = Error> {
-    use futures::future::result;
     let addr = format!(
         "http://m.airkorea.or.kr/main?lng={}&lat={}&deviceID=1234",
         longitude, latitude
     );
-    request(&addr).and_then(|html| result(parse(&html)))
+    request(&addr).map(|html| parse(&html))
+}
+
+#[cfg(test)]
+mod tests {
+    #![allow(clippy::unreadable_literal, clippy::excessive_precision)]
+
+    use {crate::*, tokio::runtime::Runtime};
+
+    #[test]
+    fn test() {
+        let mut rt = Runtime::new().unwrap();
+        let status = rt
+            .block_on(search(127.28698636603603, 36.61095403123917))
+            .unwrap();
+
+        println!("{}", status.station_address);
+        println!("{}", status.time);
+        for pollutant in status {
+            println!("{}", pollutant);
+        }
+    }
 }
