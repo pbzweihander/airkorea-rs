@@ -68,7 +68,7 @@ impl fmt::Display for Pollutant {
     }
 }
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Grade {
     None,
     Good,

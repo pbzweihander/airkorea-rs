@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.1
+
+- Update dependencies
+- Implement `Eq` and `Ord` for `Grade`
+
 ## 0.4.0
 
 - Updated dependencies
