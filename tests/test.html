@@ -1,0 +1,1691 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+<title>우리동네 대기정보</title>
+<link rel="stylesheet" type="text/css" href="/js/plugins/owlslide/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="/ui/ui.css">
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/js/plugins/owlslide/owl.carousel.js"></script>
+<script type="text/javascript" src="/js/jquery.bpopup.js"></script>
+<script type="text/javascript" src="/js/ui.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+
+
+<script type="text/javascript" src="/js/gauge.js" ></script>
+<script type="text/javascript" src="/js/loader.js" ></script>
+</head>
+
+<!-- 2018.09.21 이노디스 : 계절에 따른 이미지명 구성의 오류 보완 -->
+
+
+	
+		
+	
+	
+	
+	
+
+<!--끝// 2018.09.21 이노디스 : 계절에 따른 이미지명 구성의 오류 보완 -->
+
+
+
+<body class='main spring'>
+
+<div id="wrap">
+	<!-- header -->
+	<div id="header">
+		<h1><span class="tit">세종 세종시 신흥동측정소 <span class="ts">(도시대기)</span></span> <span class="tim">2019-04-13 18시 기준</span></h1>
+		<a href="###" class="menu">전체메뉴</a>
+		<a href='###' class="locate">위치설정</a>
+	</div>
+	<!-- //header -->
+
+	<!-- keymain -->
+	<div class="mKeymain">
+		<div class="back">
+			<div class="weather"><img src='/images/img_keymain_spring.jpg' alt=""></div>
+			<div class="bad"><img src="/images/img_keymain_bad.png" alt=""></div>
+			<div class="verybad"><img src="/images/img_keymain_verybad.png" alt=""></div>
+			<span class="arr"></span>
+			<div class="logo">
+				<div class="lt"><img src="images/logo2.png" alt="한국환경공단"></div>
+				<div class="rt"><img src="images/logo1.png" alt="환경부"></div>
+			</div>
+		</div>
+		<div class="rolling">
+			<!-- swipe -->
+			<div id="jsMain">
+				<div class="owl-carousel owl-theme">
+					
+					
+					
+					
+					<div class='item green'>
+						<a href="#jsAnchorDust2">
+							<span class="ti">
+								<span class="t1">미세먼지(PM<sub>10</sub>)</span>
+								
+								
+								<span class="t2">43㎍/m³</span>
+								
+				         		
+				      			
+							</span>
+							<span class="tx">
+								<span class="i"><img src='/images/ico_station4_2.png' alt='보통'></span>
+								
+								    
+								        <span class="t">보통</span>
+								    
+								    
+								
+							</span>
+						</a>
+					</div>
+					
+					
+					
+					<div class='item green'>
+						<a href="#jsAnchorDust3">
+							<span class="ti">
+								<span class="t1">오존(O<sub>3</sub>)</span>
+								
+								
+				         		
+				         		<span class="t2">0.067ppm</span>
+				         		
+				      			
+							</span>
+							<span class="tx">
+								<span class="i"><img src='/images/ico_station4_2.png' alt='보통'></span>
+								
+								    
+								        <span class="t">보통</span>
+								    
+								    
+								
+							</span>
+						</a>
+					</div>
+					
+					
+					
+					<div class='item blue'>
+						<a href="#jsAnchorDust4">
+							<span class="ti">
+								<span class="t1">초미세먼지(PM<sub>2.5</sub>)</span>
+								
+								
+								<span class="t2">9㎍/m³</span>
+								
+				         		
+				      			
+							</span>
+							<span class="tx">
+								<span class="i"><img src='/images/ico_station4_1.png' alt='좋음'></span>
+								
+								    
+								        <span class="t">좋음</span>
+								    
+								    
+								
+							</span>
+						</a>
+					</div>
+					
+					
+					
+					<div class='item blue'>
+						<a href="#jsAnchorDust5">
+							<span class="ti">
+								<span class="t1">이산화질소(NO<sub>2</sub>)</span>
+								
+								
+				         		
+				         		<span class="t2">0.014ppm</span>
+				         		
+				      			
+							</span>
+							<span class="tx">
+								<span class="i"><img src='/images/ico_station4_1.png' alt='좋음'></span>
+								
+								    
+								        <span class="t">좋음</span>
+								    
+								    
+								
+							</span>
+						</a>
+					</div>
+					
+					
+					
+					<div class='item blue'>
+						<a href="#jsAnchorDust6">
+							<span class="ti">
+								<span class="t1">일산화탄소(CO<sub></sub>)</span>
+								
+								
+				         		
+				         		<span class="t2">0.3ppm</span>
+				         		
+				      			
+							</span>
+							<span class="tx">
+								<span class="i"><img src='/images/ico_station4_1.png' alt='좋음'></span>
+								
+								    
+								        <span class="t">좋음</span>
+								    
+								    
+								
+							</span>
+						</a>
+					</div>
+					
+					
+					
+					<div class='item blue'>
+						<a href="#jsAnchorDust7">
+							<span class="ti">
+								<span class="t1">아황산가스(SO<sub>2</sub>)</span>
+								
+								
+				         		
+				         		<span class="t2">0.003ppm</span>
+				         		
+				      			
+							</span>
+							<span class="tx">
+								<span class="i"><img src='/images/ico_station4_1.png' alt='좋음'></span>
+								
+								    
+								        <span class="t">좋음</span>
+								    
+								    
+								
+							</span>
+						</a>
+					</div>
+					
+					
+				</div>
+			</div>
+
+			<!--//swipe -->
+			<div class="txt">
+				일반적으로 일상적인 실외활동은 가능해요. 어린이와 노약자, 몸 상태가 좋지 않으신 분들은 몸 상태에 따라 유의하여 활동해주세요.
+			</div>
+		</div>
+	</div>
+	<!-- //keymain -->
+	<!-- list -->
+	<div class="mList5">
+		<ul>
+		
+		<li id='jsAnchorDust1' class='green ' >
+			
+			<div class="tit">
+			    통합대기환경지수(CAI<sub></sub>)
+			    
+			        <span class="bt2"><a href="/info/cai;jsessionid=GBOLVXzBWjErn7a6jctd7qSVVWt1aDcBaRcnBlIOt7EOc6KZUEgg6knnAtTZKxac.airwas2_servlet_newmobile" class="iQuestion"></a></span>
+			    
+			    
+			</div>
+			
+			
+			<div class="con">
+				<div class="co">
+					<div class="graph">
+						<canvas id="mainGrape1" width="180" height="92"></canvas>
+						<div class="graphTxt"><img src="/images/txt_graph_CAI.png" alt=""></div>
+					</div>
+					<div class="tx">
+			 			
+						
+						
+						<strong class="t1">보통 81</strong>
+						
+		         		
+		      			
+						<p class="t2"></p>
+					</div>
+				</div>
+				<div class="graph2" id='mainChart1'></div>
+				<div class="score">
+					
+						
+						
+							<span class="i1"><em>0.0~50.0</em></span>
+							<span class="i2"><em>51.0~100.0</em></span>
+							<span class="i3"><em>101.0~250.0</em></span>
+							<span class="i4"><em>251.0~ </em></span>
+						
+					
+				</div>
+			</div>
+		</li>
+		
+		<li id='jsAnchorDust2' class='green ' >
+			
+			<div class="tit">
+			    미세먼지(PM<sub>10</sub>)
+			    
+			    
+			    <span class="bt"><a href="#jsWho" data-air-value="PM">환경기준</a></span>
+			    
+			</div>
+			
+			
+			<div class="con">
+				<div class="co">
+					<div class="graph">
+						<canvas id="mainGrape2" width="180" height="92"></canvas>
+						<div class="graphTxt"><img src="/images/txt_graph_PM10.png" alt=""></div>
+					</div>
+					<div class="tx">
+			 			
+						
+						<strong class="t1">보통 43<sub>㎍/㎥</sub></strong>
+						
+						
+		         		
+		      			
+						<p class="t2">일상적인 실외활동 가능합니다.</p>
+					</div>
+				</div>
+				<div class="graph2" id='mainChart2'></div>
+				<div class="score">
+					
+						
+							<span class="i1"><em>0~30</em></span>
+							<span class="i2"><em>31~80</em></span>
+							<span class="i3"><em>81~150</em></span>
+							<span class="i4"><em>151~ </em></span>
+						
+						
+					
+				</div>
+			</div>
+		</li>
+		
+		<li id='jsAnchorDust3' class='green ' >
+			
+			<div class="tit">
+			    오존(O<sub>3</sub>)
+			    
+			    
+			    <span class="bt"><a href="#jsWho" data-air-value="O">환경기준</a></span>
+			    
+			</div>
+			
+			
+			<div class="con">
+				<div class="co">
+					<div class="graph">
+						<canvas id="mainGrape3" width="180" height="92"></canvas>
+						<div class="graphTxt"><img src="/images/txt_graph_O3.png" alt=""></div>
+					</div>
+					<div class="tx">
+			 			
+						
+						
+		         		
+		         		<strong class="t1">보통 0.067<sub>ppm</sub></strong>
+		         		
+		      			
+						<p class="t2">일상적인 실외활동 가능합니다.</p>
+					</div>
+				</div>
+				<div class="graph2" id='mainChart3'></div>
+				<div class="score">
+					
+						
+						
+							<span class="i1"><em>0.0~0.03</em></span>
+							<span class="i2"><em>0.031~0.09</em></span>
+							<span class="i3"><em>0.091~0.15</em></span>
+							<span class="i4"><em>0.151~ </em></span>
+						
+					
+				</div>
+			</div>
+		</li>
+		
+		<li id='jsAnchorDust4' class='blue ' >
+			
+			<div class="tit">
+			    초미세먼지(PM<sub>2.5</sub>)
+			    
+			    
+			    <span class="bt"><a href="#jsWho" data-air-value="PM">환경기준</a></span>
+			    
+			</div>
+			
+			
+			<div class="con">
+				<div class="co">
+					<div class="graph">
+						<canvas id="mainGrape4" width="180" height="92"></canvas>
+						<div class="graphTxt"><img src="/images/txt_graph_PM2.5.png" alt=""></div>
+					</div>
+					<div class="tx">
+			 			
+						
+						<strong class="t1">좋음 9<sub>㎍/㎥</sub></strong>
+						
+						
+		         		
+		      			
+						<p class="t2">일상적인 실외활동 가능합니다.</p>
+					</div>
+				</div>
+				<div class="graph2" id='mainChart4'></div>
+				<div class="score">
+					
+						
+							<span class="i1"><em>0~15</em></span>
+							<span class="i2"><em>16~35</em></span>
+							<span class="i3"><em>36~75</em></span>
+							<span class="i4"><em>76~ </em></span>
+						
+						
+					
+				</div>
+			</div>
+		</li>
+		
+		<li id='jsAnchorDust5' class='blue closed' >
+			
+			
+			<div class="tit type2">
+			    <a href="###">이산화질소(NO<sub>2</sub>)</a>
+			    <span class="bt"><a href="#jsWho" data-air-value="NO">환경기준</a></span>
+			</div>
+			
+			<div class="con">
+				<div class="co">
+					<div class="graph">
+						<canvas id="mainGrape5" width="180" height="92"></canvas>
+						<div class="graphTxt"><img src="/images/txt_graph_NO2.png" alt=""></div>
+					</div>
+					<div class="tx">
+			 			
+						
+						
+		         		
+		         		<strong class="t1">좋음 0.014<sub>ppm</sub></strong>
+		         		
+		      			
+						<p class="t2"></p>
+					</div>
+				</div>
+				<div class="graph2" id='mainChart5'></div>
+				<div class="score">
+					
+						
+						
+							<span class="i1"><em>0.0~0.03</em></span>
+							<span class="i2"><em>0.031~0.06</em></span>
+							<span class="i3"><em>0.061~0.15</em></span>
+							<span class="i4"><em>0.151~ </em></span>
+						
+					
+				</div>
+			</div>
+		</li>
+		
+		<li id='jsAnchorDust6' class='blue closed' >
+			
+			
+			<div class="tit type2">
+			    <a href="###">일산화탄소(CO<sub></sub>)</a>
+			    <span class="bt"><a href="#jsWho" data-air-value="CO">환경기준</a></span>
+			</div>
+			
+			<div class="con">
+				<div class="co">
+					<div class="graph">
+						<canvas id="mainGrape6" width="180" height="92"></canvas>
+						<div class="graphTxt"><img src="/images/txt_graph_CO.png" alt=""></div>
+					</div>
+					<div class="tx">
+			 			
+						
+						
+		         		
+		         		<strong class="t1">좋음 0.3<sub>ppm</sub></strong>
+		         		
+		      			
+						<p class="t2"></p>
+					</div>
+				</div>
+				<div class="graph2" id='mainChart6'></div>
+				<div class="score">
+					
+						
+						
+							<span class="i1"><em>0.0~2.0</em></span>
+							<span class="i2"><em>2.01~9.0</em></span>
+							<span class="i3"><em>9.01~15.0</em></span>
+							<span class="i4"><em>15.01~ </em></span>
+						
+					
+				</div>
+			</div>
+		</li>
+		
+		<li id='jsAnchorDust7' class='blue closed' >
+			
+			
+			<div class="tit type2">
+			    <a href="###">아황산가스(SO<sub>2</sub>)</a>
+			    <span class="bt"><a href="#jsWho" data-air-value="SO">환경기준</a></span>
+			</div>
+			
+			<div class="con">
+				<div class="co">
+					<div class="graph">
+						<canvas id="mainGrape7" width="180" height="92"></canvas>
+						<div class="graphTxt"><img src="/images/txt_graph_SO2.png" alt=""></div>
+					</div>
+					<div class="tx">
+			 			
+						
+						
+		         		
+		         		<strong class="t1">좋음 0.003<sub>ppm</sub></strong>
+		         		
+		      			
+						<p class="t2"></p>
+					</div>
+				</div>
+				<div class="graph2" id='mainChart7'></div>
+				<div class="score">
+					
+						
+						
+							<span class="i1"><em>0.0~0.02</em></span>
+							<span class="i2"><em>0.021~0.05</em></span>
+							<span class="i3"><em>0.051~0.15</em></span>
+							<span class="i4"><em>0.151~ </em></span>
+						
+					
+				</div>
+			</div>
+		</li>
+		
+
+		<li class="week closed">
+			<div class="tit"><a href="###">이번주 날씨</a></div>
+			<div class="con2">
+				<div class="tx1">
+					<span class="t1">2019-04-13 (토)</span>
+					<span class="i1"><em><img src="/images/ico_weath1.png" width="12" alt=""></em> 22%</span>
+					<span class="i2"><em><img src="/images/ico_weath2.png" width="14" alt=""></em> 남서 3.4m/s</span>
+					<span class="i3"><em><img src="/images/ico_weather1_1.png" width="24" alt=""></em> 16.9˚</span>
+				</div>
+				<div class="tx2">
+					<div class="tab jsTabWeather">
+						<span class="ls selected"><a href="###" id="jsWeatherScroll_20190413">토요일</a></span>
+						<span class="ls"><a href="###" id="jsWeatherScroll_20190414">일요일</a></span>
+						<span class="ls"><a href="###" id="jsWeatherScroll_20190415">월요일</a></span>
+					</div>
+					<div class="lst" id="jsWeather1">
+						
+						<div class="lstBg" style="width : 1330px;">
+						        
+						        
+						            
+						            
+   						            	<div class="col" name="jsWeatherScroll_20190413">
+						            
+						        
+									<span class="a">오후 21:00 </span>
+									<span class="b"><img src="/images/ico_weather_23_.png" height="24" alt="구름많음"></span>
+									<span class="c">11˚</span>
+									<span class="d">11 / 11</span>
+								</div>
+						        
+						        
+						            
+						            	<div class="col" name="jsWeatherScroll_20190414" id="jsWeatherScroll_20190414">
+						            
+						            
+						        
+									<span class="a">오전 00:00 </span>
+									<span class="b"><img src="/images/ico_weather_23_.png" height="24" alt="구름많음"></span>
+									<span class="c">9˚</span>
+									<span class="d">7 / 16</span>
+								</div>
+						        
+						        
+						            
+						            
+   						            	<div class="col" name="jsWeatherScroll_20190414">
+						            
+						        
+									<span class="a">오전 03:00 </span>
+									<span class="b"><img src="/images/ico_weather_24_.png" height="24" alt="--"></span>
+									<span class="c">8˚</span>
+									<span class="d">7 / 16</span>
+								</div>
+						        
+						        
+						            
+						            
+   						            	<div class="col" name="jsWeatherScroll_20190414">
+						            
+						        
+									<span class="a">오전 06:00 </span>
+									<span class="b"><img src="/images/ico_weather_24_.png" height="24" alt="--"></span>
+									<span class="c">7˚</span>
+									<span class="d">7 / 16</span>
+								</div>
+						        
+						        
+						            
+						            
+   						            	<div class="col" name="jsWeatherScroll_20190414">
+						            
+						        
+									<span class="a">오전 09:00 </span>
+									<span class="b"><img src="/images/ico_weather_15_.png" height="24" alt="비"></span>
+									<span class="c">9˚</span>
+									<span class="d">7 / 16</span>
+								</div>
+						        
+						        
+						            
+						            
+   						            	<div class="col" name="jsWeatherScroll_20190414">
+						            
+						        
+									<span class="a">오후 12:00 </span>
+									<span class="b"><img src="/images/ico_weather_15_.png" height="24" alt="비"></span>
+									<span class="c">10˚</span>
+									<span class="d">7 / 16</span>
+								</div>
+						        
+						        
+						            
+						            
+   						            	<div class="col" name="jsWeatherScroll_20190414">
+						            
+						        
+									<span class="a">오후 15:00 </span>
+									<span class="b"><img src="/images/ico_weather_15_.png" height="24" alt="비"></span>
+									<span class="c">16˚</span>
+									<span class="d">7 / 16</span>
+								</div>
+						        
+						        
+						            
+						            
+   						            	<div class="col" name="jsWeatherScroll_20190414">
+						            
+						        
+									<span class="a">오후 18:00 </span>
+									<span class="b"><img src="/images/ico_weather_22_.png" height="24" alt="구름조금"></span>
+									<span class="c">14˚</span>
+									<span class="d">7 / 16</span>
+								</div>
+						        
+						        
+						            
+						            
+   						            	<div class="col" name="jsWeatherScroll_20190414">
+						            
+						        
+									<span class="a">오후 21:00 </span>
+									<span class="b"><img src="/images/ico_weather_21_.png" height="24" alt="맑음"></span>
+									<span class="c">8˚</span>
+									<span class="d">7 / 16</span>
+								</div>
+						        
+						        
+						            
+						            	<div class="col" name="jsWeatherScroll_20190415" id="jsWeatherScroll_20190415">
+						            
+						            
+						        
+									<span class="a">오전 00:00 </span>
+									<span class="b"><img src="/images/ico_weather_21_.png" height="24" alt="맑음"></span>
+									<span class="c">6˚</span>
+									<span class="d">2 / 20</span>
+								</div>
+						        
+						        
+						            
+						            
+   						            	<div class="col" name="jsWeatherScroll_20190415">
+						            
+						        
+									<span class="a">오전 03:00 </span>
+									<span class="b"><img src="/images/ico_weather_21_.png" height="24" alt="맑음"></span>
+									<span class="c">4˚</span>
+									<span class="d">2 / 20</span>
+								</div>
+						        
+						        
+						            
+						            
+   						            	<div class="col" name="jsWeatherScroll_20190415">
+						            
+						        
+									<span class="a">오전 06:00 </span>
+									<span class="b"><img src="/images/ico_weather_21_.png" height="24" alt="맑음"></span>
+									<span class="c">2˚</span>
+									<span class="d">2 / 20</span>
+								</div>
+						        
+						        
+						            
+						            
+   						            	<div class="col" name="jsWeatherScroll_20190415">
+						            
+						        
+									<span class="a">오전 09:00 </span>
+									<span class="b"><img src="/images/ico_weather_21_.png" height="24" alt="맑음"></span>
+									<span class="c">10˚</span>
+									<span class="d">2 / 20</span>
+								</div>
+						        
+						        
+						            
+						            
+   						            	<div class="col" name="jsWeatherScroll_20190415">
+						            
+						        
+									<span class="a">오후 12:00 </span>
+									<span class="b"><img src="/images/ico_weather_21_.png" height="24" alt="맑음"></span>
+									<span class="c">17˚</span>
+									<span class="d">2 / 20</span>
+								</div>
+						        
+						        
+						            
+						            
+   						            	<div class="col" name="jsWeatherScroll_20190415">
+						            
+						        
+									<span class="a">오후 15:00 </span>
+									<span class="b"><img src="/images/ico_weather_21_.png" height="24" alt="맑음"></span>
+									<span class="c">20˚</span>
+									<span class="d">2 / 20</span>
+								</div>
+						        
+						        
+						            
+						            
+   						            	<div class="col" name="jsWeatherScroll_20190415">
+						            
+						        
+									<span class="a">오후 18:00 </span>
+									<span class="b"><img src="/images/ico_weather_21_.png" height="24" alt="맑음"></span>
+									<span class="c">16˚</span>
+									<span class="d">2 / 20</span>
+								</div>
+						        
+						        
+						            
+						            
+   						            	<div class="col" name="jsWeatherScroll_20190415">
+						            
+						        
+									<span class="a">오후 21:00 </span>
+									<span class="b"><img src="/images/ico_weather_21_.png" height="24" alt="맑음"></span>
+									<span class="c">11˚</span>
+									<span class="d">2 / 20</span>
+								</div>
+						        
+						        
+						            
+						            	<div class="col" name="jsWeatherScroll_20190416" id="jsWeatherScroll_20190416">
+						            
+						            
+						        
+									<span class="a">오전 00:00 </span>
+									<span class="b"><img src="/images/ico_weather_21_.png" height="24" alt="맑음"></span>
+									<span class="c">7˚</span>
+									<span class="d">7 / 10</span>
+								</div>
+						        
+						        
+						            
+						            	<div class="col" name="jsWeatherScroll_20190416" id="jsWeatherScroll_20190416">
+						            
+						            
+						        
+									<span class="a">오전 00:00 </span>
+									<span class="b"><img src="/images/ico_weather_11_.png" height="24" alt="맑음"></span>
+									<span class="c">10˚</span>
+									<span class="d">7 / 10</span>
+								</div>
+						        
+						</div>
+					</div>
+					<!-- //day3 -->
+				</div>
+			</div>
+		</li>
+
+		</ul>
+		<div class="logo"><img src="images/logo_airkorea.png" alt="Air korea"></div>
+	</div>
+	<!-- //list -->
+	
+<div class="gFallow">
+	<span class="iTop"><a href="#wrap">Go to Page top</a></span>
+	<a href="###" class="iSns jsBtnShare">Share Sns</a>
+</div>
+<!-- layer -->
+<div class="lShare">
+	<div class="shareCon">
+		<h3>공유하기</h3>
+		<ul>
+		<li><a href="###" id="callShareKakaotalk"><img src="/images/ico_sns_talk.png" alt="카카오톡"> <span>카카오톡</span></a></li>
+		<li><a href="###" id="callShareKakaostory"><img src="/images/ico_sns_story.png" alt="카카오스토리"> <span>카카오스토리</span></a></li>
+		<li><a href="###" id="callShareFacebook"><img src="/images/ico_sns_facebook.png" alt="페이스북"> <span>페이스북</span></a></li>
+		<li><a href="###" id="callShareTwitter"><img src="/images/ico_sns_twitter.png" alt="트위터"> <span>트위터</span></a></li>
+		<li><a href="###" id="callShareSMS"><img src="/images/ico_sns_line.png" alt="문자메세지"> <span>문자메세지</span></a></li>
+		<li><a href="###" id="callCopyUrl"><img src="/images/ico_sns_url.png" alt="URL 복사"> <span>URL 복사</span></a></li>
+		</ul>
+		<a href="###" class="b-close">공유하기 레이어 닫기</a>
+	</div>
+</div>
+<script type="text/javascript">
+
+$(document).on('click', '.shareCon a', function(e) {
+	e.preventDefault();
+
+	var clickId = $(this).attr("id");
+    location.href="airkorea://"+clickId;
+
+	return false;
+});
+
+
+$(document).ready(function(){
+	$('.jsBtnShare').bind('click', function(e) {
+		e.preventDefault();
+		if(!isIos()){
+			BPOPUP =  $('.lShare').bPopup({
+				modalClose : true,
+				opacity: 0.6,
+				positionStyle: 'fixed'
+			});
+		}
+	    location.href="airkorea://callSharePopup";
+	});
+});
+</script>
+</div>
+<!-- footer -->
+
+
+
+
+
+<div id="footer">
+	<span class="ls ls1"><a href='/air/quality_koReAnaMiS8341/PM25;jsessionid=GBOLVXzBWjErn7a6jctd7qSVVWt1aDcBaRcnBlIOt7EOc6KZUEgg6knnAtTZKxac.airwas2_servlet_newmobile'>시도별 대기현황</a></span>
+	<span class="ls ls2"><a href="/">홈</a></span>
+	<span class="ls ls3"><a href="/air/forecast;jsessionid=GBOLVXzBWjErn7a6jctd7qSVVWt1aDcBaRcnBlIOt7EOc6KZUEgg6knnAtTZKxac.airwas2_servlet_newmobile">내일의대기정보</a></span>
+</div>
+<!-- gnb forMobile -->
+<div id="jsAside" class="mAside">
+	<div class="asideBg">
+		<!-- top -->
+		<div class="top">
+			<div class="topBg">
+				<div class="acc">
+					<a href='/;jsessionid=GBOLVXzBWjErn7a6jctd7qSVVWt1aDcBaRcnBlIOt7EOc6KZUEgg6knnAtTZKxac.airwas2_servlet_newmobile' class="iHome">Home</a>
+					<div class="gRt">
+						<a href="###" class="iLocate2">위치설정</a>
+						<a href="###" class="iSet">Setting</a>
+						<a href="###" class="iClose">레이어 닫기</a>
+					</div>
+				</div>
+				<div class="title">
+					<span class="tit"><a href='###' id="stationDmUrls">my 측정소</a></span>
+					<strong class="txt" id="stationDm"></strong>
+				</div>
+			</div>
+		</div>
+		<!-- //top -->
+
+		<ul>
+		<li class="i1">
+
+			<a href='/air/quality_koReAnaMiS8341/PM25;jsessionid=GBOLVXzBWjErn7a6jctd7qSVVWt1aDcBaRcnBlIOt7EOc6KZUEgg6knnAtTZKxac.airwas2_servlet_newmobile'>
+				<span class="tit">시도별 대기현황</span>
+				<p class="txt">지역별 오염도의 정보를 확인할 수 있습니다</p>
+			</a>
+		</li>
+		<li class="i2">
+			<a href="/air/forecast;jsessionid=GBOLVXzBWjErn7a6jctd7qSVVWt1aDcBaRcnBlIOt7EOc6KZUEgg6knnAtTZKxac.airwas2_servlet_newmobile">
+				<span class="tit">내일의 대기정보</span>
+				<p class="txt">대기오염 농도 및 예보를 확인할 수 있습니다</p>
+			</a>
+		</li>
+		<li class="i3">
+			<a href="/air/warning;jsessionid=GBOLVXzBWjErn7a6jctd7qSVVWt1aDcBaRcnBlIOt7EOc6KZUEgg6knnAtTZKxac.airwas2_servlet_newmobile">
+				<span class="tit">대기질 주의보/경보 현황</span>
+				<p class="txt">대기오염 주의보 및 경보 발생시 해당내역을<br> 확인할 수 있습니다</p>
+			</a>
+		</li>
+		<li class="i8">
+			<a href="/gis/map;jsessionid=GBOLVXzBWjErn7a6jctd7qSVVWt1aDcBaRcnBlIOt7EOc6KZUEgg6knnAtTZKxac.airwas2_servlet_newmobile">
+				<span class="tit">측정정보 세부보기(GIS)</span>
+				<p class="txt">지리정보시스템 기반의 시도별 측정현황과 측정소 정보를 상세히 확인할 수 있습니다</p>
+			</a>
+		</li>
+		<li class="i4">
+			<a href="/info/behavior;jsessionid=GBOLVXzBWjErn7a6jctd7qSVVWt1aDcBaRcnBlIOt7EOc6KZUEgg6knnAtTZKxac.airwas2_servlet_newmobile">
+				<span class="tit">고농도 미세먼지 대응요령</span>
+				<p class="txt">건강피해를 최소화 할 장소별 행동요령을<br> 확인 할 수 있습니다</p>
+			</a>
+		</li>
+		<li class="i7">
+			<a href="/info/standard/in;jsessionid=GBOLVXzBWjErn7a6jctd7qSVVWt1aDcBaRcnBlIOt7EOc6KZUEgg6knnAtTZKxac.airwas2_servlet_newmobile">
+				<span class="tit">대기환경기준</span>
+				<p class="txt">국내/국외의 대기환경기준을<br>상세히 확인할 수 있습니다.</p>
+			</a>
+		</li>
+		<li class="i5">
+			<a href="/info/pollution;jsessionid=GBOLVXzBWjErn7a6jctd7qSVVWt1aDcBaRcnBlIOt7EOc6KZUEgg6knnAtTZKxac.airwas2_servlet_newmobile">
+				<span class="tit">대기오염 배움터</span>
+				<p class="txt">대기환경지수 및 오염물질의 상세설명과<br> 대기환경기준을 확인 할 수 있습니다</p>
+			</a>
+		</li>
+		<li class="i6">
+			<a href="/info/notice;jsessionid=GBOLVXzBWjErn7a6jctd7qSVVWt1aDcBaRcnBlIOt7EOc6KZUEgg6knnAtTZKxac.airwas2_servlet_newmobile">
+				<span class="tit">공지사항</span>
+				<p class="txt">우리동네대기정보 관련된 공지사항을 확인 할 수 있습니다</p>
+			</a>
+		</li>
+		</ul>
+		<div class="link">
+			<span class="ls"><a href="http://www.airkorea.or.kr/index" id="goHomePageWeb">Airkorea 홈페이지 바로가기</a></span>
+			
+		</div>
+	</div>
+</div>
+<!-- //gnb forMobile -->
+
+<!-- script for header, sub menu -->
+<script type="text/javascript">
+$("#stationDm").html(decodeURIComponent(decodeURIComponent((getCommonCookie('viewStationName') + '<br>(' + getCommonCookie('mangName') + ') ').replace(/\+/g, '%20'))).replace(/\+/g, '%20'));
+
+$("#stationDmUrls").attr("href","/station/"+decodeURIComponent(decodeURIComponent((getCommonCookie('stationCode') + '').replace(/\+/g, '%20'))).replace(/\+/g, '%20'));
+
+//설정 클릭
+$(document).on('click', '#jsAside .iSet', function(e) {
+	e.preventDefault();
+	if(isNative()){
+	    location.href="airkorea://callRequestDeviceId?type=set" ;
+	}else{
+		location.href="/common/setting/1234" ;
+	}
+	return false;
+});
+//위치설정 클릭-메뉴
+$(document).on('click', '#jsAside .iLocate2', function(e) {
+	e.preventDefault();
+	if(isNative()){
+	    location.href="airkorea://callRequestDeviceId?type=lot" ;
+	}else{
+	    location.href="/location/1234";
+	}
+	return false;
+});
+//위치설정 클릭-메인
+$(document).on('click', '#header .locate', function(e) {
+	e.preventDefault();
+	if(isNative()){
+	    location.href="airkorea://callRequestDeviceId?type=lot" ;
+	}else{
+	    location.href="/location/1234";
+	}
+	return false;
+});
+//Airkorea 홈페이지 바로가기
+$(document).on('click', '#goHomePageWeb', function(e) {
+	e.preventDefault();
+
+	if(isNative()){
+		location.href="airkorea://callBrowser?link=http://www.airkorea.or.kr/web";
+	}else{
+		open("http://www.airkorea.or.kr/web");
+	}
+	return false;
+});
+//callPermissionGPS 위치설정 허용(native) -set=Y/N
+
+$(document).ready(function(){
+	$("#footer > span").removeClass('selected');
+});
+
+function callRequestDeviceId(deviceId, type){
+	if(type == "set"){
+	    location.href="/common/setting/"+deviceId ;
+	}else if(type == "lot"){
+	    location.href="/location/"+deviceId ;
+	}else{
+		var gpsParam = decodeURI(type).split("^");
+		location.href="/main?lat="+gpsParam[0]+"&lng="+gpsParam[1]+"&deviceId="+deviceId;
+	}
+}
+
+</script>
+<!-- //script for header, sub menu -->
+<!-- //footer -->
+
+<!-- popup -->
+<div class="modalBg" style="display:none;"></div>
+<div id="adminPop" class="mPopup1" style="display:none;">
+	
+</div>
+<!-- //popup -->
+
+<!-- popup -->
+<div id="initPop" class="mPopup1 lGuide1" style="display:none;">
+	<div class="popupBg">
+		<h3>안내</h3>
+		<div class="con">
+			<p class="txt1">우리동네대기질의 원활한 서비스 제공을<br> 위해 필요한 선택적 접근권한을 아래와<br> 같이 안내드립니다.</p>
+			<div class="box1">
+				<ul>
+				<li class="i1"><strong class="t">알림</strong> 푸시알람 수신을 위해 접근</li>
+				<li class="i2"><strong class="t">위치</strong> 현재 위치를 찾기 위해 접근</li>
+				</ul>
+			</div>
+			<p class="mInfo1">선택 접근권한은 동의하지 않아도 서비스 이용 가능 하나, 해당권한이 필요한 기능은 제공이 제한될 수 있습니다.</p>
+			<div class="button">
+				<a href="###" class="mBtn1 blue">확인</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //popup -->
+
+<!-- popup -->
+
+<div id="dustPop" class="mPopup1 lDust" style="display:none;">
+	<div class="popupBg">
+		<h3>황사정보 알림</h3>
+		<div class="con">
+			<div class="img"><img src="/images/img_mainpopup2.jpg" alt="황사이미지"></div>
+			<dl class="list1">
+			
+			<dt>일시</dt>
+			<dd><strong class="txtBlue"></strong></dd>
+			<dt>내용</dt>
+			<dd>현재 황사의 영향으로 PM10 농도가 높게 나타나고 있습니다.</dd> 
+			</dl>
+			<div class="button">
+				<!--  <a href="/air/quality/dust;jsessionid=GBOLVXzBWjErn7a6jctd7qSVVWt1aDcBaRcnBlIOt7EOc6KZUEgg6knnAtTZKxac.airwas2_servlet_newmobile" class="mBtn1 blue">황사 바로가기</a> -->
+				<a href="/air/quality_koReAnaMiS8341/dust;jsessionid=GBOLVXzBWjErn7a6jctd7qSVVWt1aDcBaRcnBlIOt7EOc6KZUEgg6knnAtTZKxac.airwas2_servlet_newmobile" class="mBtn1 blue">황사 바로가기</a>
+			</div>
+		</div>
+		<div class="notshow">
+			<a href="###">오늘하루 그만보기</a>
+		</div>
+		<a href="###" class="close">닫기</a>
+	</div>
+</div>
+
+<!-- //popup -->
+
+<!-- popup -->
+<div id="jsWho_PM" class="mPopup1 lWho" style="display:none;">
+	<div class="popupBg">
+		<h3>환경기준</h3>
+		<div class="con">
+			<div class="mBoard1 co1">
+				<table>
+				<caption>국내기준</caption>
+				<thead>
+				<tr>
+					<th scope="col" colspan="4">국내기준</th>
+				</tr>
+				<tr>
+					<th scope="col" colspan="2">PM<sub>10</sub>(㎍/m³)</th>
+					<th scope="col" colspan="2">PM<sub>2.5</sub>(㎍/m³)</th>
+				</tr>
+				<tr>
+					<th scope="col">연평균</th>
+					<th scope="col">일평균</th>
+					<th scope="col">연평균</th>
+					<th scope="col">일평균</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>50</td>
+					<td>100</td>
+					<td>15</td>
+					<td>35</td>
+				</tr>
+				</tbody>
+				</table>
+			</div>
+			<div class="mBoard1 co2">
+				<table>
+				<caption>WHO 권고기준</caption>
+				<thead>
+				<tr>
+					<th scope="col" rowspan="3">구분</th>
+					<th scope="col" colspan="4">WHO 권고기준</th>
+				</tr>
+				<tr>
+					<th scope="col" colspan="2">PM<sub>10</sub>(㎍/m³)</th>
+					<th scope="col" colspan="2">PM<sub>2.5</sub>(㎍/m³)</th>
+				</tr>
+				<tr>
+					<th scope="col">연평균</th>
+					<th scope="col">일평균</th>
+					<th scope="col">연평균</th>
+					<th scope="col">일평균</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>잠정목표1</td>
+					<td>70</td>
+					<td>150</td>
+					<td>35</td>
+					<td>75</td>
+				</tr>
+				<tr>
+					<td>잠정목표2</td>
+					<td>50</td>
+					<td>100</td>
+					<td>25</td>
+					<td>50</td>
+				</tr>
+				<tr>
+					<td>잠정목표3</td>
+					<td>30</td>
+					<td>75</td>
+					<td>15</td>
+					<td>37.5</td>
+				</tr>
+				<tr>
+					<td>권고기준</td>
+					<td>20</td>
+					<td>50</td>
+					<td>10</td>
+					<td>25</td>
+				</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+		<a href="###" class="close">닫기</a>
+	</div>
+</div>
+<!-- //popup -->
+
+<!-- popup -->
+<div id="jsWho_O" class="mPopup1 lWho" style="display:none;">
+	<div class="popupBg">
+		<h3>환경기준</h3>
+		<div class="con">
+			<div class="mBoard1 co1">
+				<table>
+				<caption>오존기준</caption>
+				<thead>
+				<tr>
+					<th scope="col">1시간</th>
+					<th scope="col">8시간</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>0.1<sub>ppm</sub> 이하</td>
+					<td>0.06<sub>ppm</sub> 이하</td>
+				</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+		<a href="###" class="close">닫기</a>
+	</div>
+</div>
+<!-- //popup -->
+
+<!-- popup -->
+<div id="jsWho_NO" class="mPopup1 lWho" style="display:none;">
+	<div class="popupBg">
+		<h3>환경기준</h3>
+		<div class="con">
+			<div class="mBoard1 co1">
+				<table>
+				<caption>이산화질소기준</caption>
+				<thead>
+				<tr>
+					<th scope="col">1시간</th>
+					<th scope="col">24시간</th>
+					<th scope="col">연간</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>0.10<sub>ppm</sub> 이하</td>
+					<td>0.06<sub>ppm</sub> 이하</td>
+					<td>0.03<sub>ppm</sub> 이하</td>
+				</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+		<a href="###" class="close">닫기</a>
+	</div>
+</div>
+<!-- //popup -->
+
+<!-- popup -->
+<div id="jsWho_CO" class="mPopup1 lWho" style="display:none;">
+	<div class="popupBg">
+		<h3>환경기준</h3>
+		<div class="con">
+			<div class="mBoard1 co1">
+				<table>
+				<caption>일산화탄소기준</caption>
+				<thead>
+				<tr>
+					<th scope="col">1시간</th>
+					<th scope="col">8시간</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>25<sub>ppm</sub> 이하</td>
+					<td>9<sub>ppm</sub> 이하</td>
+				</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+		<a href="###" class="close">닫기</a>
+	</div>
+</div>
+<!-- //popup -->
+
+<!-- popup -->
+<div id="jsWho_SO" class="mPopup1 lWho" style="display:none;">
+	<div class="popupBg">
+		<h3>환경기준</h3>
+		<div class="con">
+			<div class="mBoard1 co1">
+				<table>
+				<caption>아황산가스기준</caption>
+				<thead>
+				<tr>
+					<th scope="col">1시간</th>
+					<th scope="col">24시간</th>
+					<th scope="col">연간</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>0.15<sub>ppm</sub> 이하</td>
+					<td>0.05<sub>ppm</sub> 이하</td>
+					<td>0.02<sub>ppm</sub> 이하</td>
+				</tr>
+				</tbody>
+				</table>
+			</div>
+		</div>
+		<a href="###" class="close">닫기</a>
+	</div>
+</div>
+<!-- //popup -->
+
+<script type="text/javascript">
+<!--WHO 권고기준-->
+$(".mList5 li .tit .bt a").on("click", function(event){
+	var airType = $(this).data("air-value");
+	$("#jsWho_" + airType).css("top", event.pageY);
+	$("#jsWho_" + airType + ", .modalBg").show();
+
+	return false;
+});
+
+
+var scroll02Start = 0;
+var scroll03ClickStart = 0;
+var scroll03ScrollStart = 0;
+
+$(".mList5 li .con2 .tx2 .lst").scroll(function(){
+	   var timeWeather0Id = "jsWeatherScroll_20190413";
+	   var timeWeather1Id = "jsWeatherScroll_20190414";
+	   var timeWeather2Id = "jsWeatherScroll_20190415";
+
+	   var point_ = $(this).scrollLeft();
+
+
+	   if(scroll02Start <= point_  && point_ < scroll03ScrollStart){
+			$(".jsTabWeather span").removeClass("selected");
+			$("#" + timeWeather1Id).parent().addClass("selected");
+	   }else if(scroll03ScrollStart <= point_){
+			$(".jsTabWeather span").removeClass("selected");
+			$("#" + timeWeather2Id).parent().addClass("selected");
+	   }else{
+		   $(".jsTabWeather span").removeClass("selected");
+		   $("#" + timeWeather0Id).parent().addClass("selected");
+	   }
+		return false;
+});
+
+
+
+$(".jsTabWeather .ls a").on("click", function(){
+	$(".mList5 li.week .tab .ls").removeClass("selected");
+	$(this).parent().addClass("selected");
+
+	if ( $(this).parent().index() == "0"  )
+	{
+		$(".mList5 li .con2 .tx2 .lst").scrollLeft(0);
+	}
+	else if ( $(this).parent().index() == "1"  )
+	{
+		$(".mList5 li .con2 .tx2 .lst").scrollLeft(scroll02Start);
+	}
+	else if ( $(this).parent().index() == "2"  )
+	{
+		$(".mList5 li .con2 .tx2 .lst").scrollLeft(scroll03ClickStart);
+	}
+});
+
+function startGage(values_, targetId, g1s,g1e,g2s,g2e,g3s,g3e,g4s,g4e){
+	var opts = {
+	  angle: 0, // The span of the gauge arc
+	  lineWidth: 0.5, // The line thickness
+	  radiusScale: 1, // Relative radius
+	  pointer: {
+		length: 0.25, // // Relative to gauge radius
+		strokeWidth: 0.035, // The thickness
+		color: '#9699a0' // Fill color
+	  },
+	  limitMax: false,     // If false, max value increases automatically if value > maxValue
+	  limitMin: false,     // If true, the min value of the gauge will be fixed
+	  generateGradient: true,
+	  highDpiSupport: true,     // High resolution support
+	  staticZones: [
+		{strokeStyle: "#2359c4", min: g1s, max: g1e}, // Yellow
+		{strokeStyle: "#01b56e", min: g1e, max: g2e}, // Green
+		{strokeStyle: "#f5c932", min: g2e, max: g3e}, // Yellow
+		{strokeStyle: "#da3539", min: g3e, max: g4e}  // Red
+	  ],
+	};
+	var target = document.getElementById(targetId); // your canvas element
+	var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
+	gauge.maxValue = g4e; // set max gauge value
+	gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+	gauge.animationSpeed = 32; // set animation speed (32 is default value)
+	gauge.set(values_); // set actual value
+
+}
+
+function drawBasic() {
+
+    var options = {
+				            enableInteractivity: false,
+				            legend: 'none',
+				            width: 1200,
+				            height: 200,
+							curveType: 'function',
+				            chartArea: {'width': '100%', 'height': '85%'},
+				            vAxis: { gridlines: { color: 'transparent' },  baselineColor: '#F2F2F2'},
+				            hAxis: { textStyle: { fontName: 'Arial',	fontSize: '10', color:'#BDBDBD', bold: true }},
+				            annotations: { textStyle: { fontName: 'Arial',	fontSize: '10', bold: true }	},
+				            series: [
+								            {color: '#BDBDBD', lineWidth: 1, pointSize: 0},
+								            {color: '#2359c4', lineWidth: 0, pointSize: 5, annotations: { textStyle: { color:'#2359c4' },stemColor : 'none'	}},
+								            {color: '#01b56e', lineWidth: 0, pointSize: 5, annotations: { textStyle: { color:'#01b56e' },stemColor : 'none'	}},
+								            {color: '#f5c932', lineWidth: 0, pointSize: 5, annotations: { textStyle: { color:'#f5c932' }	,stemColor : 'none' }},
+								            {color: '#da3539', lineWidth: 0, pointSize: 5, annotations: { textStyle: { color:'#da3539' },stemColor : 'none'	}},
+						            	]
+  						};
+
+    //7가지 물질 차트생성
+    
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Line');
+    data.addColumn('number', 'Under 10');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Under 20');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Under 30');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Over 30');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addRows([ ['19시',74,null,'',74,'74',null,'',null,''],['20시',68,null,'',68,'68',null,'',null,''],['21시',63,null,'',63,'63',null,'',null,''],['22시',64,null,'',64,'64',null,'',null,''],['23시',65,null,'',65,'65',null,'',null,''],['00시',60,null,'',60,'60',null,'',null,''],['01시',63,null,'',63,'63',null,'',null,''],['02시',66,null,'',66,'66',null,'',null,''],['03시',74,null,'',74,'74',null,'',null,''],['04시',79,null,'',79,'79',null,'',null,''],['05시',79,null,'',79,'79',null,'',null,''],['06시',82,null,'',82,'82',null,'',null,''],['07시',79,null,'',79,'79',null,'',null,''],['08시',85,null,'',85,'85',null,'',null,''],['09시',92,null,'',92,'92',null,'',null,''],['10시',97,null,'',97,'97',null,'',null,''],['11시',100,null,'',100,'100',null,'',null,''],['12시',97,null,'',97,'97',null,'',null,''],['13시',90,null,'',90,'90',null,'',null,''],['14시',83,null,'',83,'83',null,'',null,''],['15시',83,null,'',83,'83',null,'',null,''],['16시',84,null,'',84,'84',null,'',null,''],['17시',85,null,'',85,'85',null,'',null,''],['18시',81,null,'',81,'81',null,'',null,''], ]);
+    var chart = new google.visualization.LineChart(document.getElementById('mainChart1'));
+    google.visualization.events.addListener(chart, 'ready', function() {
+    	chartDrawAfter('mainChart1');
+    });
+    chart.draw(data, options);
+
+	
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Line');
+    data.addColumn('number', 'Under 10');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Under 20');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Under 30');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Over 30');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addRows([ ['19시',46,null,'',46,'46',null,'',null,''],['20시',35,null,'',35,'35',null,'',null,''],['21시',31,null,'',31,'31',null,'',null,''],['22시',36,null,'',36,'36',null,'',null,''],['23시',49,null,'',49,'49',null,'',null,''],['00시',55,null,'',55,'55',null,'',null,''],['01시',46,null,'',46,'46',null,'',null,''],['02시',53,null,'',53,'53',null,'',null,''],['03시',50,null,'',50,'50',null,'',null,''],['04시',51,null,'',51,'51',null,'',null,''],['05시',53,null,'',53,'53',null,'',null,''],['06시',52,null,'',52,'52',null,'',null,''],['07시',56,null,'',56,'56',null,'',null,''],['08시',64,null,'',64,'64',null,'',null,''],['09시',76,null,'',76,'76',null,'',null,''],['10시',53,null,'',53,'53',null,'',null,''],['11시',56,null,'',56,'56',null,'',null,''],['12시',40,null,'',40,'40',null,'',null,''],['13시',40,null,'',40,'40',null,'',null,''],['14시',26,26,'26',null,'',null,'',null,''],['15시',30,30,'30',null,'',null,'',null,''],['16시',33,null,'',33,'33',null,'',null,''],['17시',32,null,'',32,'32',null,'',null,''],['18시',43,null,'',43,'43',null,'',null,''], ]);
+    var chart = new google.visualization.LineChart(document.getElementById('mainChart2'));
+    google.visualization.events.addListener(chart, 'ready', function() {
+    	chartDrawAfter('mainChart2');
+    });
+    chart.draw(data, options);
+
+	
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Line');
+    data.addColumn('number', 'Under 10');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Under 20');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Under 30');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Over 30');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addRows([ ['19시',0.059,null,'',0.059,'0.059',null,'',null,''],['20시',0.052,null,'',0.052,'0.052',null,'',null,''],['21시',0.045,null,'',0.045,'0.045',null,'',null,''],['22시',0.047,null,'',0.047,'0.047',null,'',null,''],['23시',0.028,0.028,'0.028',null,'',null,'',null,''],['00시',0.028,0.028,'0.028',null,'',null,'',null,''],['01시',0.027,0.027,'0.027',null,'',null,'',null,''],['02시',0.026,0.026,'0.026',null,'',null,'',null,''],['03시',0.025,0.025,'0.025',null,'',null,'',null,''],['04시',0.022,0.022,'0.022',null,'',null,'',null,''],['05시',0.012,0.012,'0.012',null,'',null,'',null,''],['06시',0.005,0.005,'0.005',null,'',null,'',null,''],['07시',0.004,0.004,'0.004',null,'',null,'',null,''],['08시',0.006,0.006,'0.006',null,'',null,'',null,''],['09시',0.01,0.01,'0.01',null,'',null,'',null,''],['10시',0.024,0.024,'0.024',null,'',null,'',null,''],['11시',0.044,null,'',0.044,'0.044',null,'',null,''],['12시',0.068,null,'',0.068,'0.068',null,'',null,''],['13시',0.069,null,'',0.069,'0.069',null,'',null,''],['14시',0.07,null,'',0.07,'0.07',null,'',null,''],['15시',0.07,null,'',0.07,'0.07',null,'',null,''],['16시',0.071,null,'',0.071,'0.071',null,'',null,''],['17시',0.072,null,'',0.072,'0.072',null,'',null,''],['18시',0.067,null,'',0.067,'0.067',null,'',null,''], ]);
+    var chart = new google.visualization.LineChart(document.getElementById('mainChart3'));
+    google.visualization.events.addListener(chart, 'ready', function() {
+    	chartDrawAfter('mainChart3');
+    });
+    chart.draw(data, options);
+
+	
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Line');
+    data.addColumn('number', 'Under 10');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Under 20');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Under 30');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Over 30');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addRows([ ['19시',8,8,'8',null,'',null,'',null,''],['20시',3,3,'3',null,'',null,'',null,''],['21시',3,3,'3',null,'',null,'',null,''],['22시',11,11,'11',null,'',null,'',null,''],['23시',21,null,'',21,'21',null,'',null,''],['00시',29,null,'',29,'29',null,'',null,''],['01시',29,null,'',29,'29',null,'',null,''],['02시',32,null,'',32,'32',null,'',null,''],['03시',43,null,'',null,'',43,'43',null,''],['04시',37,null,'',null,'',37,'37',null,''],['05시',36,null,'',null,'',36,'36',null,''],['06시',37,null,'',null,'',37,'37',null,''],['07시',36,null,'',null,'',36,'36',null,''],['08시',42,null,'',null,'',42,'42',null,''],['09시',48,null,'',null,'',48,'48',null,''],['10시',44,null,'',null,'',44,'44',null,''],['11시',35,null,'',35,'35',null,'',null,''],['12시',26,null,'',26,'26',null,'',null,''],['13시',21,null,'',21,'21',null,'',null,''],['14시',13,13,'13',null,'',null,'',null,''],['15시',11,11,'11',null,'',null,'',null,''],['16시',19,null,'',19,'19',null,'',null,''],['17시',15,15,'15',null,'',null,'',null,''],['18시',9,9,'9',null,'',null,'',null,''], ]);
+    var chart = new google.visualization.LineChart(document.getElementById('mainChart4'));
+    google.visualization.events.addListener(chart, 'ready', function() {
+    	chartDrawAfter('mainChart4');
+    });
+    chart.draw(data, options);
+
+	
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Line');
+    data.addColumn('number', 'Under 10');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Under 20');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Under 30');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Over 30');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addRows([ ['19시',0.018,0.018,'0.018',null,'',null,'',null,''],['20시',0.019,0.019,'0.019',null,'',null,'',null,''],['21시',0.025,0.025,'0.025',null,'',null,'',null,''],['22시',0.024,0.024,'0.024',null,'',null,'',null,''],['23시',0.039,null,'',0.039,'0.039',null,'',null,''],['00시',0.027,0.027,'0.027',null,'',null,'',null,''],['01시',0.025,0.025,'0.025',null,'',null,'',null,''],['02시',0.02,0.02,'0.02',null,'',null,'',null,''],['03시',0.021,0.021,'0.021',null,'',null,'',null,''],['04시',0.021,0.021,'0.021',null,'',null,'',null,''],['05시',0.026,0.026,'0.026',null,'',null,'',null,''],['06시',0.031,null,'',0.031,'0.031',null,'',null,''],['07시',0.034,null,'',0.034,'0.034',null,'',null,''],['08시',0.035,null,'',0.035,'0.035',null,'',null,''],['09시',0.035,null,'',0.035,'0.035',null,'',null,''],['10시',0.03,0.03,'0.03',null,'',null,'',null,''],['11시',0.026,0.026,'0.026',null,'',null,'',null,''],['12시',0.017,0.017,'0.017',null,'',null,'',null,''],['13시',0.014,0.014,'0.014',null,'',null,'',null,''],['14시',0.013,0.013,'0.013',null,'',null,'',null,''],['15시',0.013,0.013,'0.013',null,'',null,'',null,''],['16시',0.014,0.014,'0.014',null,'',null,'',null,''],['17시',0.014,0.014,'0.014',null,'',null,'',null,''],['18시',0.014,0.014,'0.014',null,'',null,'',null,''], ]);
+    var chart = new google.visualization.LineChart(document.getElementById('mainChart5'));
+    google.visualization.events.addListener(chart, 'ready', function() {
+    	chartDrawAfter('mainChart5');
+    });
+    chart.draw(data, options);
+
+	
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Line');
+    data.addColumn('number', 'Under 10');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Under 20');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Under 30');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Over 30');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addRows([ ['19시',0.3,0.3,'0.3',null,'',null,'',null,''],['20시',0.3,0.3,'0.3',null,'',null,'',null,''],['21시',0.4,0.4,'0.4',null,'',null,'',null,''],['22시',0.4,0.4,'0.4',null,'',null,'',null,''],['23시',0.6,0.6,'0.6',null,'',null,'',null,''],['00시',0.5,0.5,'0.5',null,'',null,'',null,''],['01시',0.5,0.5,'0.5',null,'',null,'',null,''],['02시',0.5,0.5,'0.5',null,'',null,'',null,''],['03시',0.5,0.5,'0.5',null,'',null,'',null,''],['04시',0.5,0.5,'0.5',null,'',null,'',null,''],['05시',0.5,0.5,'0.5',null,'',null,'',null,''],['06시',0.5,0.5,'0.5',null,'',null,'',null,''],['07시',0.6,0.6,'0.6',null,'',null,'',null,''],['08시',0.7,0.7,'0.7',null,'',null,'',null,''],['09시',0.6,0.6,'0.6',null,'',null,'',null,''],['10시',0.5,0.5,'0.5',null,'',null,'',null,''],['11시',0.4,0.4,'0.4',null,'',null,'',null,''],['12시',0.4,0.4,'0.4',null,'',null,'',null,''],['13시',0.3,0.3,'0.3',null,'',null,'',null,''],['14시',0.3,0.3,'0.3',null,'',null,'',null,''],['15시',0.3,0.3,'0.3',null,'',null,'',null,''],['16시',0.3,0.3,'0.3',null,'',null,'',null,''],['17시',0.3,0.3,'0.3',null,'',null,'',null,''],['18시',0.3,0.3,'0.3',null,'',null,'',null,''], ]);
+    var chart = new google.visualization.LineChart(document.getElementById('mainChart6'));
+    google.visualization.events.addListener(chart, 'ready', function() {
+    	chartDrawAfter('mainChart6');
+    });
+    chart.draw(data, options);
+
+	
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'Line');
+    data.addColumn('number', 'Under 10');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Under 20');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Under 30');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addColumn('number', 'Over 30');
+    data.addColumn({type: 'string', role: 'annotation'});
+    data.addRows([ ['19시',0.004,0.004,'0.004',null,'',null,'',null,''],['20시',0.003,0.003,'0.003',null,'',null,'',null,''],['21시',0.003,0.003,'0.003',null,'',null,'',null,''],['22시',0.003,0.003,'0.003',null,'',null,'',null,''],['23시',0.003,0.003,'0.003',null,'',null,'',null,''],['00시',0.003,0.003,'0.003',null,'',null,'',null,''],['01시',0.003,0.003,'0.003',null,'',null,'',null,''],['02시',0.003,0.003,'0.003',null,'',null,'',null,''],['03시',0.003,0.003,'0.003',null,'',null,'',null,''],['04시',0.003,0.003,'0.003',null,'',null,'',null,''],['05시',0.003,0.003,'0.003',null,'',null,'',null,''],['06시',0.002,0.002,'0.002',null,'',null,'',null,''],['07시',0.003,0.003,'0.003',null,'',null,'',null,''],['08시',0.003,0.003,'0.003',null,'',null,'',null,''],['09시',0.005,0.005,'0.005',null,'',null,'',null,''],['10시',0.005,0.005,'0.005',null,'',null,'',null,''],['11시',0.004,0.004,'0.004',null,'',null,'',null,''],['12시',0.004,0.004,'0.004',null,'',null,'',null,''],['13시',0.003,0.003,'0.003',null,'',null,'',null,''],['14시',0.003,0.003,'0.003',null,'',null,'',null,''],['15시',0.003,0.003,'0.003',null,'',null,'',null,''],['16시',0.003,0.003,'0.003',null,'',null,'',null,''],['17시',0.003,0.003,'0.003',null,'',null,'',null,''],['18시',0.003,0.003,'0.003',null,'',null,'',null,''], ]);
+    var chart = new google.visualization.LineChart(document.getElementById('mainChart7'));
+    google.visualization.events.addListener(chart, 'ready', function() {
+    	chartDrawAfter('mainChart7');
+    });
+    chart.draw(data, options);
+
+	
+
+}
+function afterDraw(){
+	$('#weatherChartDiv').find('text').each(function(index) {
+		if($(this).attr("fill") ===  '#da3539') {
+			var yPos = parseFloat($(this).attr("y"));
+			yPos = yPos -31;
+	        $(this).attr("y", yPos);
+		}else if($(this).attr("fill") ===  '#2359c4') {
+			var yPos = parseFloat($(this).attr("y"));
+			yPos = yPos +31;
+	        $(this).attr("y", yPos);
+		}
+	});
+}
+
+function chartDrawAfter(ids){
+	var elmnt = document.getElementById(ids);
+	var x = elmnt.scrollWidth;
+	$('#'+ids).scrollLeft(x);
+}
+
+function callback(event) {
+	var currentItem = event.item.index;
+	if ( $(".owl-carousel.owl-drag .owl-item").eq(currentItem).children().attr("class") == "item yellow" ){
+		$(".mKeymain .back .verybad").fadeOut();
+		$(".mKeymain .back .bad").fadeIn();
+	}else if ( $(".owl-carousel.owl-drag .owl-item").eq(currentItem).children().attr("class") == "item red" ){
+		$(".mKeymain .back .bad").fadeOut();
+		$(".mKeymain .back .verybad").fadeIn();
+	}else{
+		$(".mKeymain .back .bad, .mKeymain .back .verybad").fadeOut();
+	}
+}
+
+//안내팝업 앱 설치 후 1회만 실행
+$(document).on('click', '#initPop .mBtn1', function(e) {
+	e.preventDefault();
+	setCommonCookie("airKoreaInit",3650); //쿠키 유효기간 10년
+	$('#initPop').bPopup().close();
+	mainPopup();
+	return false;
+});
+
+//오늘하루 보지 않기-자정까지
+$(document).on('click', '#adminPop .notshow a', function(e) {
+	e.preventDefault();
+	setCommonCookieToday("airKoreaPop",1);
+	$('#adminPop').bPopup().close();
+
+	dustPopup();
+
+	return false;
+});
+
+//오늘하루 보지 않기-자정까지
+$(document).on('click', '#dustPop .notshow a', function(e) {
+	e.preventDefault();
+	setCommonCookieToday("dustPop",1);
+	$('#dustPop').bPopup().close();
+	return false;
+});
+
+
+$(document).on('click', '#adminPop .close', function(e) {
+	e.preventDefault();
+	$('#adminPop').bPopup().close();
+
+	dustPopup();
+
+	return false;
+});
+
+$(document).on('click', '#dustPop .close', function(e) {
+	e.preventDefault();
+	$('#dustPop').bPopup().close();
+
+	return false;
+});
+
+
+function isExistMainPop() {
+	return "N";
+}
+
+function mainPopup(){
+	if("N" == "Y"){
+		$('#adminPop').bPopup({
+			modalClose : false,
+			opacity: 0.6,
+			positionStyle: 'fixed'
+		});
+	}
+}
+
+function dustPopup() {
+	
+}
+
+$( document ).ready(function() {
+	//앱초기 팝업
+	if("Y" == "Y"){
+		$('#initPop').bPopup({
+			modalClose : false,
+			opacity: 0.6,
+			positionStyle: 'fixed'
+		});
+	}else {
+		if (isExistMainPop() == "Y") {
+			mainPopup();
+		}else {
+			dustPopup();
+		}
+	}
+
+/*
+	initPopup();
+	mainPopup("Y" );
+	
+*/
+
+
+	initNavigation();
+
+	$('#jsMain .owl-carousel').owlCarousel({
+		stagePadding: 54,
+		items:1,
+		loop:false,
+		margin:15,
+		autoWidth:true,
+		nav:true,
+		onInitialized : callback,
+		onChanged : callback
+	});
+
+	
+	startGage('81.0','mainGrape1', '0.0','50.0','51.0','100.0','101.0','250.0','251.0','300.0');
+	
+	startGage('43.0','mainGrape2', '0.0','30.0','31.0','80.0','81.0','150.0','151.0','180.0');
+	
+	startGage('0.067','mainGrape3', '0.0','0.03','0.031','0.09','0.091','0.15','0.151','0.18');
+	
+	startGage('9.0','mainGrape4', '0.0','15.0','16.0','35.0','36.0','75.0','76.0','90.0');
+	
+	startGage('0.014','mainGrape5', '0.0','0.03','0.031','0.06','0.061','0.15','0.151','0.18');
+	
+	startGage('0.3','mainGrape6', '0.0','2.0','2.01','9.0','9.01','15.0','15.01','17.0');
+	
+	startGage('0.0030','mainGrape7', '0.0','0.02','0.021','0.05','0.051','0.15','0.151','0.18');
+	
+
+	google.charts.load('current', {packages: ['corechart', 'line']});
+	google.charts.setOnLoadCallback(drawBasic);
+
+	$('li').each(function(index) {
+		if(index ===0){
+
+		}
+	});
+
+
+	var timeWeather0Name = "jsWeatherScroll_20190413";
+	var timeWeather1Name = "jsWeatherScroll_20190414";
+	var timeWeather2Name = "jsWeatherScroll_20190415";
+
+	var timeWeather0Len = $("div[name='" + timeWeather0Name + "']").length;
+	var timeWeather1Len = $("div[name='" + timeWeather1Name + "']").length;
+	var timeWeather2Len = $("div[name='" + timeWeather2Name + "']").length;
+	var totalLen = timeWeather0Len + timeWeather1Len + timeWeather2Len;
+
+
+	scroll02Start = $("div[name='" + timeWeather0Name + "']").length * 70;
+	scroll03ScrollStart = (totalLen - (5 + timeWeather2Len)) * 70;
+	scroll03ClickStart = scroll02Start + $("div[name='" + timeWeather1Name + "']").length * 70;
+
+	//footer 표시
+	$("#footer > .ls2").addClass('selected');
+
+});
+
+</script>
+
+</body>
+</html>

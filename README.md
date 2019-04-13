@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE-MIT)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE-APACHE)
 
-Limitless [Airkorea](http://www.airkorea.or.kr) API wrapper written in Rust.
+[Airkorea](http://www.airkorea.or.kr) Crawler written in Rust.
 
 ```rust
 use {airkorea, futures::prelude::*, tokio::runtime::Runtime};
@@ -14,6 +14,7 @@ use {airkorea, futures::prelude::*, tokio::runtime::Runtime};
 let mut rt = Runtime::new();
 let status = rt.block_on(airkorea::search(lng, lat))?;
 println!("Station address: {}", status.station_address);
+println!("Time: {}", status.time);
 for pollutant in status {
     println!("{}", pollutant);
 }

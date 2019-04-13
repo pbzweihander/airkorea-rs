@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.2
+
+- Write unit tests
+- Update crate description
+
 ## 0.4.1
 
 - Update dependencies

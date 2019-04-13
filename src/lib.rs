@@ -1,10 +1,10 @@
 //! # airkorea
 //!
-//! Airkorea API wrapper using Airkorea mobile page.
+//! Airkorea Crawler using Airkorea mobile page.
 //!
 //! # Example
 //!
-//! ```
+//! ```no_run
 //! # use tokio::runtime::Runtime;
 //! # use futures::prelude::*;
 //! # let mut rt = Runtime::new().unwrap();
@@ -227,19 +227,133 @@ pub fn search(longitude: f32, latitude: f32) -> impl Future<Item = AirStatus, Er
 mod tests {
     #![allow(clippy::unreadable_literal, clippy::excessive_precision)]
 
-    use {crate::*, tokio::runtime::Runtime};
+    use {crate::*, hyper::Server, tokio::runtime::Runtime};
 
     #[test]
-    fn test() {
-        let mut rt = Runtime::new().unwrap();
-        let status = rt
-            .block_on(search(127.28698636603603, 36.61095403123917))
-            .unwrap();
+    fn test_request() {
+        static HTML: &'static str = r#"<html>
+<head><title>FooBar</title></head>
+<body>Hello, world!</body>
+</html>"#;
 
-        println!("{}", status.station_address);
-        println!("{}", status.time);
+        let mut rt = Runtime::new().unwrap();
+
+        let (sender, receiver) = futures::sync::oneshot::channel();
+
+        let service =
+            || hyper::service::service_fn_ok(|_| hyper::Response::new(hyper::Body::from(HTML)));
+
+        let server = Server::bind(&"0.0.0.0:12121".parse().unwrap())
+            .serve(service)
+            .with_graceful_shutdown(receiver)
+            .map_err(|why| panic!("{}", why));
+
+        rt.spawn(server);
+
+        let fut = request("http://localhost:12121")
+            .map(|resp| {
+                assert_eq!(resp, Html::parse_document(HTML));
+            })
+            .map_err(|why| panic!("{}", why));
+
+        rt.block_on(fut).unwrap();
+
+        let _ = sender.send(());
+    }
+
+    #[test]
+    fn test_parse() {
+        static HTML: &'static str = include_str!("../tests/test.html");
+
+        let html = Html::parse_document(HTML);
+
+        let status = parse(&html);
+
+        assert_eq!(
+            &status.station_address,
+            "세종 세종시 신흥동측정소"
+        );
+        assert_eq!(&status.time, "2019-04-13 18시 기준");
+
+        assert_eq!(&status.pollutants[0].name, "CAI");
+        assert_eq!(&status.pollutants[0].unit, "");
+        assert_eq!(status.pollutants[0].grade, Grade::Normal);
+        assert_eq!(
+            status.pollutants[0].data,
+            vec![
+                Some(74.0),
+                Some(68.0),
+                Some(63.0),
+                Some(64.0),
+                Some(65.0),
+                Some(60.0),
+                Some(63.0),
+                Some(66.0),
+                Some(74.0),
+                Some(79.0),
+                Some(79.0),
+                Some(82.0),
+                Some(79.0),
+                Some(85.0),
+                Some(92.0),
+                Some(97.0),
+                Some(100.0),
+                Some(97.0),
+                Some(90.0),
+                Some(83.0),
+                Some(83.0),
+                Some(84.0),
+                Some(85.0),
+                Some(81.0),
+            ]
+        );
+
+        assert_eq!(&status.pollutants[6].name, "SO2");
+        assert_eq!(&status.pollutants[6].unit, "ppm");
+        assert_eq!(status.pollutants[6].grade, Grade::Good);
+        assert_eq!(
+            status.pollutants[6].data,
+            vec![
+                Some(0.004),
+                Some(0.003),
+                Some(0.003),
+                Some(0.003),
+                Some(0.003),
+                Some(0.003),
+                Some(0.003),
+                Some(0.003),
+                Some(0.003),
+                Some(0.003),
+                Some(0.003),
+                Some(0.002),
+                Some(0.003),
+                Some(0.003),
+                Some(0.005),
+                Some(0.005),
+                Some(0.004),
+                Some(0.004),
+                Some(0.003),
+                Some(0.003),
+                Some(0.003),
+                Some(0.003),
+                Some(0.003),
+                Some(0.003),
+            ]
+        );
+
         for pollutant in status {
             println!("{}", pollutant);
         }
+    }
+
+    #[test]
+    fn test_extract_text_from_element() {
+        static HTML: &'static str = "<p>foo<span>bar<h1>baz</h1></span></p>";
+
+        let html = Html::parse_fragment(HTML);
+        let element = html.root_element();
+        let text = extract_text_from_element(element);
+
+        assert_eq!(&text, "foobarbaz");
     }
 }
