@@ -2,7 +2,7 @@
 //!
 //! Airkorea Crawler using Airkorea mobile page.
 //!
-//! # Example
+//! ## Example
 //!
 //! ```no_run
 //! # use tokio::runtime::Runtime;
@@ -16,13 +16,28 @@
 //!     println!("{}", pollutant);
 //! }
 //! ```
+//!
+//! ## Testing
+//!
+//! You can override Airkorea Url for mock testing.
+//! If you want to write unit tests for some functions using airkorea,
+//! just set `AIRKOREA_URL` environment variable to desired mock server.
+//!
+//! ```no_run
+//! # fn spawn_server(_: &str) {}
+//! # let mut rt = tokio::runtime::Runtime::new().unwrap();
+//! spawn_server("localhost:1234");
+//! std::env::set_var("AIRKOREA_URL", "http://localhost:1234");
+//! let status = rt.block_on(airkorea::search(123.123, 456.456)).unwrap();
+//! assert_eq!(&status.station_address, "Foobar Station");
+//! ```
 
 use {
     failure::Error,
     futures::prelude::*,
     lazy_static::lazy_static,
     regex::Regex,
-    reqwest::r#async::Client,
+    reqwest::{r#async::Client, Url},
     scraper::{Html, Selector},
     std::fmt,
 };
@@ -113,7 +128,7 @@ fn extract_text_from_element(element: scraper::element_ref::ElementRef) -> Strin
     element.text().map(str::trim).collect::<Vec<_>>().join("")
 }
 
-fn request(url: &str) -> impl Future<Item = Html, Error = Error> {
+fn request(url: Url) -> impl Future<Item = Html, Error = Error> {
     let client = Client::new();
     client
         .get(url)
@@ -212,17 +227,28 @@ fn parse(document: &Html) -> AirStatus {
 }
 
 pub fn search(longitude: f32, latitude: f32) -> impl Future<Item = AirStatus, Error = Error> {
-    let addr = format!(
-        "http://m.airkorea.or.kr/main?lng={}&lat={}&deviceID=1234",
-        longitude, latitude
-    );
-    request(&addr).map(|html| parse(&html))
+    static AIRKOREA_URL: &'static str = "http://m.airkorea.or.kr/main?deviceID=1234";
+
+    let airkorea_url = std::env::var("AIRKOREA_URL").unwrap_or_else(|_| AIRKOREA_URL.to_string());
+
+    let addr = Url::parse_with_params(
+        &airkorea_url,
+        &[
+            ("lng", longitude.to_string()),
+            ("lat", latitude.to_string()),
+        ],
+    )
+    .unwrap_or_else(|why| {
+        panic!(
+            "Cannot parse url {}&lng={}&lat={}: {}",
+            AIRKOREA_URL, longitude, latitude, why
+        )
+    });
+    request(addr).map(|html| parse(&html))
 }
 
 #[cfg(test)]
 mod tests {
-    #![allow(clippy::unreadable_literal, clippy::excessive_precision)]
-
     use {crate::*, hyper::Server, tokio::runtime::Runtime};
 
     #[test]
@@ -232,28 +258,37 @@ mod tests {
 <body>Hello, world!</body>
 </html>"#;
 
+        let (called_sender, called_receiver) = std::sync::mpsc::channel();
+        let (shutdown_sender, shutdown_receiver) = futures::sync::oneshot::channel();
+
         let mut rt = Runtime::new().unwrap();
 
-        let (sender, receiver) = futures::sync::oneshot::channel();
-
-        let service =
-            || hyper::service::service_fn_ok(|_| hyper::Response::new(hyper::Body::from(HTML)));
+        let service = hyper::service::make_service_fn(move |_| {
+            let called_sender = called_sender.clone();
+            hyper::service::service_fn_ok(move |_| {
+                called_sender.send(()).unwrap();
+                hyper::Response::new(hyper::Body::from(HTML))
+            })
+        });
 
         let server = Server::bind(&"0.0.0.0:12121".parse().unwrap())
             .serve(service)
-            .with_graceful_shutdown(receiver)
+            .with_graceful_shutdown(shutdown_receiver)
             .map_err(|why| panic!("{}", why));
 
         rt.spawn(server);
 
-        let fut = request("http://localhost:12121")
+        let url = "http://localhost:12121".parse().unwrap();
+        let fut = request(url)
             .map(|resp| {
                 assert_eq!(resp, Html::parse_document(HTML));
             })
-            .and_then(|_| sender.send(()).map_err(|_| panic!("Cannot send")))
+            .and_then(|_| shutdown_sender.send(()).map_err(|_| panic!("Cannot send")))
             .map_err(|why| panic!("{}", why));
 
         rt.block_on_all(fut).unwrap();
+
+        called_receiver.try_recv().unwrap();
     }
 
     #[test]
@@ -335,10 +370,6 @@ mod tests {
                 Some(0.003),
             ]
         );
-
-        for pollutant in status {
-            println!("{}", pollutant);
-        }
     }
 
     #[test]
@@ -350,23 +381,5 @@ mod tests {
         let text = extract_text_from_element(element);
 
         assert_eq!(&text, "foobarbaz");
-    }
-
-    #[test]
-    fn test_to_real_server() {
-        let mut rt = Runtime::new().unwrap();
-
-        let (lng, lat) = (127.28698636603603, 36.61095403123917);
-
-        let status = rt.block_on(search(lng, lat)).unwrap();
-
-        assert!(!status.station_address.is_empty());
-        assert!(!status.time.is_empty());
-        assert_eq!(status.pollutants.len(), 7);
-        for p in status.pollutants {
-            assert!(!p.name.is_empty());
-            assert!(!p.unit.is_empty() || p.name == "CAI");
-            assert!(!p.data.is_empty());
-        }
     }
 }
