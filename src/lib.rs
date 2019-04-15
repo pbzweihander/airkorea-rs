@@ -356,4 +356,22 @@ mod tests {
 
         assert_eq!(&text, "foobarbaz");
     }
+
+    #[test]
+    fn test_to_real_server() {
+        let mut rt = Runtime::new().unwrap();
+
+        let (lng, lat) = (127.28698636603603, 36.61095403123917);
+
+        let status = rt.block_on(search(lng, lat)).unwrap();
+
+        assert!(!status.station_address.is_empty());
+        assert!(!status.time.is_empty());
+        assert_eq!(status.pollutants.len(), 7);
+        for p in status.pollutants {
+            assert!(!p.name.is_empty());
+            assert!(!p.unit.is_empty() || p.name == "CAI");
+            assert!(!p.data.is_empty());
+        }
+    }
 }
