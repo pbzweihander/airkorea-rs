@@ -254,11 +254,10 @@ mod tests {
             .map(|resp| {
                 assert_eq!(resp, Html::parse_document(HTML));
             })
+            .and_then(|_| sender.send(()).map_err(|_| panic!("Cannot send")))
             .map_err(|why| panic!("{}", why));
 
-        rt.block_on(fut).unwrap();
-
-        let _ = sender.send(());
+        rt.block_on_all(fut).unwrap();
     }
 
     #[test]
