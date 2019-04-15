@@ -110,11 +110,7 @@ impl fmt::Display for Grade {
 }
 
 fn extract_text_from_element(element: scraper::element_ref::ElementRef) -> String {
-    element
-        .text()
-        .map(|s| s.trim())
-        .collect::<Vec<_>>()
-        .join("")
+    element.text().map(str::trim).collect::<Vec<_>>().join("")
 }
 
 fn request(url: &str) -> impl Future<Item = Html, Error = Error> {
