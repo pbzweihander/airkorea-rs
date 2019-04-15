@@ -1,6 +1,6 @@
 [package]
 name = "airkorea"
-version = "0.4.2"
+version = "0.4.3"
 authors = ["pbzweihander <pbzweihander@gmail.com>"]
 description = "Airkorea mobile page crawler"
 license = "MIT/Apache-2.0"

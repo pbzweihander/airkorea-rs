@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.3
+
+- Add unit testing feature with environment variable
+
 ## 0.4.2
 
 - Write unit tests
