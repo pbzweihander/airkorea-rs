@@ -1,10 +1,10 @@
 # airkorea-rs
 
-[![circleci](https://circleci.com/gh/pbzweihander/airkorea-rs.svg?style=shield)](https://circleci.com/gh/pbzweihander/airkorea-rs)
-[![crate.io](https://img.shields.io/crates/v/airkorea.svg)](https://crates.io/crates/airkorea)
-[![docs.rs](https://docs.rs/airkorea/badge.svg)](https://docs.rs/airkorea)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE-MIT)
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE-APACHE)
+[![circleci badge]][circleci]
+[![crates.io badge]][crates.io]
+[![docs.rs badge]][docs.rs]
+[![MIT License badge]](LICENSE-MIT)
+[![Apache License badge]](LICENSE-APACHE)
 
 [Airkorea](http://www.airkorea.or.kr) Crawler written in Rust.
 
@@ -39,3 +39,12 @@ let status = rt.block_on(airkorea::search(123.123, 456.456)).unwrap();
 
 assert_eq!(&status.station_address, "Foobar Station");
 ```
+
+[circleci]: https://circleci.com/gh/pbzweihander/airkorea-rs
+[circleci badge]: https://circleci.com/gh/pbzweihander/airkorea-rs.svg?style=shield
+[crates.io]: https://crates.io/crates/airkorea
+[crates.io badge]: https://badgen.net/crates/v/airkorea
+[docs.rs]: https://docs.rs/airkorea
+[docs.rs badge]: https://docs.rs/airkorea/badge.svg
+[MIT License badge]: https://badgen.net/badge/license/MIT/blue
+[Apache License badge]: https://badgen.net/badge/license/Apache-2.0/blue
